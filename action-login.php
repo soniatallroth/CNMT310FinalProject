@@ -29,4 +29,11 @@ if(!property_exists($obj, "result")) {
     die(print("Error, no result property"));
 }
 
+//dumps JSON server response containing data + result
+//var_dump($returnValue);
+
+if($obj->result == "Success") {
+    die(header("Location: " . BOOKMARKS));
+}
+
 print $obj->result;
