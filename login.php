@@ -1,5 +1,6 @@
 <?php
 
+require_once("autoload.php");
 require_once("Page.class.php");
 
 $page = new Page("Login Portal");
@@ -25,6 +26,14 @@ print "<!--Content-->";
 print "<main>";
 print '     <h1 id="login-header">Login</h1>';
 print '     <form id="form_login" action="action-login.php" method="POST">';
+
+if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+    foreach($_SESSION['errors'] as $field => $message) {
+        print '<span class=\"error\">' . $message . '</span><br>';
+    }
+    $_SESSION['errors'] = array();
+}
+
 print '         <div id="form_login_feedback">';
 print '             <label for="username">Username:</label>';
 print '             <input type="text" id="username" name="username">';

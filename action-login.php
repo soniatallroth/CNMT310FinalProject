@@ -9,7 +9,27 @@ $client = new WebServiceClient($url);
 // Default is to POST. If you need to change to a GET, here's how:
 //$client->setMethod("GET");
 
-$username = $_POST['username'];
+$_SESSION['loggedIn'] = false; 
+$_SESSION['errors'] = array();
+$required = array('username', 'password');
+
+// checks to make sure both form fields were set, displays error message if not 
+foreach($required as $element) {
+  if(!isset($_POST[$element])){
+    $_SESSION['errors'][] = "Please input a username and/or password.";
+    die(header("location: " . LOGINFORM));
+  }
+}
+
+// checks if username or password field is empty, displays error message if so 
+foreach($required as $element) {
+  if(empty($_POST[$element])) {
+    $_SESSION['errors'][] = "Please input a " .ucfirst($element);
+    die(header("location: " . LOGINFORM));
+  }
+}
+
+$username = strtolower($_POST['username']);
 $password = $_POST['password'];
 
 $data = array("username" => $username, "password" => $password);
@@ -29,12 +49,16 @@ $obj = json_decode($returnValue);
 if(!property_exists($obj, "result")) {
     die(print("Error, no result property"));
 }
-
 //dumps JSON server response containing data + result
 //var_dump($returnValue);
 
+//all checks above are passed, so below code *should* be safe to run
+
 if($obj->result == "Success") {
+    $_SESSION['loggedIn'] = true;
     die(header("Location: " . BOOKMARKS));
 }
-
-print $obj->result;
+else {
+    $_SESSION['errors'][] = $obj->data->message;
+    die(header("Location: " . LOGINFORM));
+}

@@ -1,5 +1,6 @@
 <?php 
 
+require_once("autoload.php");
 require_once("Page.class.php");
 
 $page = new Page("Home Page");
@@ -16,12 +17,12 @@ print      "<div id=\"navbarResponsive\">";
 print           "<ul class=\"navbar-nav ms-auto\">";
 print           "<li class=\"nav-item active\">";
 
-    //if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
-    //    print '     <a href="logout.php">Log Out</a>';
-    //}
-    //else{
-        print '     <a href="login.php">Log In</a>';
-    //}
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+    print '     <a href="logout.php">Log Out</a>';
+}
+else {
+    print "     <a href=\"login.php\">Log In</a>";
+}
 
 print           "</li>";
 print           "</ul>";

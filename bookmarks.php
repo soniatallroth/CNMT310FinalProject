@@ -1,8 +1,13 @@
 <?php
 
+require_once("autoload.php");
 require_once("Page.class.php");
 
 $page = new Page("Bookmarks");
+
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) { 
+    die(header("Location:" . LOGINFORM)); 
+}
 
 $page->addHeadElement("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ\" crossorigin=\"anonymous\">");
 $page->addHeadElement("<link rel=\"stylesheet\" href=\"css/style.css\">");
@@ -15,7 +20,7 @@ print      "<a class=\"navbar-brand\" href=\"index.php\">Home</a>";
 print      "<div id=\"navbarResponsive\">";
 print           "<ul class=\"navbar-nav ms-auto\">";
 print           "<li class=\"nav-item active\">";
-print               "<a class=\"nav-link\" href=\"index.php\">Log Out</a> <!--probably needs to be changed-->";
+print               "<a class=\"nav-link\" href=\"logout.php\">Log Out</a> <!--probably needs to be changed-->";
 print           "</li>";
 print           "</ul>";
 print      "</div>";
