@@ -11,7 +11,7 @@ print $page->getTopSection();
 print  "<!-- Navigation -->";
 print  "<nav class=\"navbar navbar-light bg-light fixed-top\">";
 print  "<div class=\"container\">";
-print      "<a class=\"navbar-brand\" href=\HOME\">Home</a>";
+print      "<a class=\"navbar-brand\" href=\"index.php\">Home</a>";
 print      "<div id=\"navbarResponsive\">";
 print           "<ul class=\"navbar-nav ms-auto\">";
 print           "<li class=\"nav-item active\">";
