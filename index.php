@@ -20,7 +20,7 @@ print           "<li class=\"nav-item active\">";
     //    print '     <a href="logout.php">Log Out</a>';
     //}
     //else{
-        print '     <a href="form-login.php">Log In</a>';
+        print '     <a href="login.php">Log In</a>';
     //}
 
 print           "</li>";
