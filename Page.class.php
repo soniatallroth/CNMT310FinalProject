@@ -53,7 +53,7 @@ class Page {
   */
 
   function addHeadElement($include) {
-    $this->_headElements[] .= $include . PHP_EOL;
+    $this->_headElements[] = $include . PHP_EOL;
   } //end function addHeadElement
 
   function freezeTopSection() {
@@ -92,7 +92,7 @@ class Page {
   */
 
   function addBottomElement($include) {
-    $this->_bottomElements[] .= $include . PHP_EOL;
+    $this->_bottomElements[] = $include . PHP_EOL;
   } //end function addHeadElement
 
   function freezeBottomSection() {
