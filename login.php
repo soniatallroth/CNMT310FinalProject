@@ -5,14 +5,14 @@ require_once("Page.class.php");
 
 $page = new Page("Login Portal");
 
-$page->addHeadElement('<link rel="stylesheet" href="css/reset.css">')
-$page->addHeadElement('<link rel="stylesheet" href="css/style.css">')
+$page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
+$page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
     
 print $page->getTopSection();
 
 print   '<!-- Navigation (specific to login)-->';
 print   '<header class="login-header">';
-print   '   <h1><a class="login-logo" href="index.html">stash</a></h1>';
+print   '   <h1><a class="login-logo" href="index.php">stash</a></h1>';
 print   '</header>';
 print   '<!--Content-->';
 print   '<main>';
@@ -30,6 +30,7 @@ if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSIO
     }
     $_SESSION['errors'] = array();
 }
+
 print   '                   <div id="form_login_feedback">';
 print   '                        <label class="text-label" for="username">Your username</label><br>';
 print   '                        <input class="text-input" id="username" name="username" type="text" placeholder="eg. johnsmith">';
