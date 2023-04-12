@@ -15,6 +15,7 @@ print   '<header>';
 print   '   <h1><a class="logo" href="index.php">stash</a></h1>';
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+    print '     <a class="link" href="bookmarks.php">Bookmarks</a>';
     print '     <a class="link" href="logout.php">Log Out</a>';
 }
 else {
