@@ -11,6 +11,7 @@ $client = new WebServiceClient($url);
 
 $_SESSION['loggedIn'] = false; 
 $_SESSION['errors'] = array();
+$_SESSION['userid'];
 $required = array('username', 'password');
 
 // checks to make sure both form fields were set, displays error message if not 
@@ -56,6 +57,7 @@ if(!property_exists($obj, "result")) {
 
 if($obj->result == "Success") {
     $_SESSION['loggedIn'] = true;
+    $_SESSION['userid'] = $obj->data->id;
     die(header("Location: " . BOOKMARKS));
 }
 else {
