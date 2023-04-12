@@ -35,7 +35,7 @@ print   '                   <div id="form_login_feedback">';
 print   '                        <label class="text-label" for="username">Your username</label><br>';
 print   '                        <input class="text-input" id="username" name="username" type="text" placeholder="eg. johnsmith">';
 print   '                        <label class="text-label" for="password">Your password</label><br>';
-print   '                        <input class="text-input" id="password" name="password" type="text" placeholder="********">';
+print   '                        <input class="text-input" id="password" name="password" type="password" placeholder="********">';
 print   '                        <div class="button-holder">';
 print   '                            <input id="submit-btn" type="submit" value="Login">';
 print   '                        </div>';
