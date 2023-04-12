@@ -116,6 +116,7 @@ h2 {
 .text-label {
 }
 input[type="text"],
+input[type="password"],
 textarea {
     margin: 10px 0px;
     width: 100%;
@@ -125,13 +126,16 @@ textarea {
     color: black;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus
+{
     border-color: #13795b;
     background-color: #fff;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(19, 121, 91, 0.25);
 }
 input[type="text"]::placeholder,
+input[type="password"]::placeholder,
 textarea::placeholder {
     color: #dee2e6;
 }
