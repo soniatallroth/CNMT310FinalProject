@@ -6,6 +6,7 @@ require_once("Page.class.php");
 $page = new Page("Bookmarks");
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) { 
+    $_SESSION['errors'][] = "Please input a username and password to access the bookmarks page.";
     die(header("Location:" . LOGINFORM)); 
 }
 
