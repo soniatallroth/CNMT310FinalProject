@@ -116,7 +116,6 @@ h2 {
 .text-label {
 }
 input[type="text"],
-input[type="password"],
 textarea {
     margin: 10px 0px;
     width: 100%;
@@ -126,16 +125,13 @@ textarea {
     color: black;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-input[type="text"]:focus,
-input[type="password"]:focus
-{
+input[type="text"]:focus {
     border-color: #13795b;
     background-color: #fff;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(19, 121, 91, 0.25);
 }
 input[type="text"]::placeholder,
-input[type="password"]::placeholder,
 textarea::placeholder {
     color: #dee2e6;
 }
@@ -153,4 +149,89 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0f533f;
 }
+
 /* BOOKMARK PAGE */
+button {
+    color: #fff;
+    background-color: #13795b;
+    border-radius: 6px;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    height: 46px;
+}
+button:hover {
+    background-color: #0f533f;
+}
+
+.bookmark-page-container {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr;
+    grid-template-rows: 0.2fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "bookmark-heading add-mark-button"
+        "bookmark-container bookmark-container";
+}
+
+.bookmark-container {
+    grid-area: bookmark-container;
+}
+
+.bookmark-heading {
+    grid-area: bookmark-heading;
+}
+
+.add-mark-button {
+    grid-area: add-mark-button;
+}
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: 0.25rem;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.list-group-item:hover {
+    z-index: 1;
+    color: #495057;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+.list-group-item:first-child {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+.list-group-item:last-child {
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+.list-group-item + .list-group-item {
+    border-top-width: 0;
+}
+
+/* ADD BOOMKARKS PAGE (temporary) */
+.add-bookmark-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#add-bookmark {
+    border-radius: 12px;
+    width: 500px;
+    background-color: #dee2e6;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 60px;
+}
