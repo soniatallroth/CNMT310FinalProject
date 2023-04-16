@@ -23,7 +23,7 @@ print   '    <!--Content-->';
 print   '    <main>';
 print   '        <div class="bookmark-page-container">';
 print   '            <h2 class="bookmark-heading">Bookmarks</h2>';
-print   '            <button class="add-mark-button" onclick = "window.location.href="add-bookmark.php";" type="button">Add a bookmark</button>';
+print   '            <button class="add-mark-button" href="form-addbookmark.php" type="button">Add a bookmark</button>';
 print   '            <ul class="list-group bookmark-container">';
 print   '                <a href="https://github.com/" class="list-group-item list-group-item-action">Github</a>';
 print   '                <a href="https://canvas.uwsp.edu/" class="list-group-item list-group-item-action">Canvas</a>';

@@ -11,16 +11,24 @@ $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
 print $page->getTopSection();
 print '    <!-- Navigation (for temp add bookmarks page)-->';
 print '     <header>';
-print '         <h1><a class="logo" href="index.html">stash</a></h1>';
+print '         <h1><a class="logo" href="index.php">stash</a></h1>';
 print '     </header>';
 print '     <!--Content-->';
 print '     <main>';
 print '         <div class="add-bookmark-container">';
-print '             <form id="add-bookmark" action="bookmarks.php" method="POST">';
-print '                 <label class="text-label" for="link">Add the link for your bookmark</label>';
-print '                 <input class="text-input" id="link" name="link" type="text" placeholder="https://www.google.com">';
-print '                 <label class="text-label" for="link-name">Name your bookmark</label>';
-print '                 <input class="text-input" id="link-name" name="link-name" type="text" placeholder="eg. Chili recipe">';
+print '             <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
+
+if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+    foreach($_SESSION['errors'] as $field => $message) {
+        print '<span class=\"error\">' . $message . '</span><br>';
+    }
+    $_SESSION['errors'] = array();
+}
+
+print '                 <label class="text-label" for="url">Add the link for your bookmark</label>';
+print '                 <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
+print '                 <label class="text-label" for="displayname">Name your bookmark</label>';
+print '                 <input class="text-input" id="displayname" name="displayname" type="text" placeholder="eg. Chili recipe">';
 print '                 <div class="button-holder">';
 print '                     <input id="submit-btn" type="submit" value="Add your bookmark">';
 print '                 </div>';

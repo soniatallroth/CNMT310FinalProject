@@ -7,5 +7,6 @@ session_start();
 define('HOME', 'index.php');
 define('BOOKMARKS', 'bookmarks.php');
 define('LOGINFORM', 'login.php');
+define('ADDBOOKMARKFORM', 'form-addbookmark.php');
 
 ?>

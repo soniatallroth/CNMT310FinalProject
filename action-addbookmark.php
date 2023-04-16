@@ -9,32 +9,30 @@ $client = new WebServiceClient($url);
 // Default is to POST. If you need to change to a GET, here's how:
 //$client->setMethod("GET");
 
-$_SESSION['loggedIn'] = false; 
-$_SESSION['errors'] = array();
-$_SESSION['userid'] = array();
-$required = array('username', 'password');
+$required = array('url', 'displayname');
 
 // checks to make sure both form fields were set, displays error message if not 
 foreach($required as $element) {
   if(!isset($_POST[$element])){
-    $_SESSION['errors'][] = "Please input a username and/or password.";
-    die(header("location: " . LOGINFORM));
+    $_SESSION['errors'][] = "Please enter a URL/link and/or label.";
+    die(header("location: " . ADDBOOKMARKFORM));
   }
 }
 
-// checks if username or password field is empty, displays error message if so 
+// checks if URL or label field is empty, displays error message if so 
 foreach($required as $element) {
   if(empty($_POST[$element])) {
     $_SESSION['errors'][] = "Please input a " .ucfirst($element);
-    die(header("location: " . LOGINFORM));
+    die(header("location: " . ADDBOOKMARKFORM));
   }
 }
 
-$username = strtolower($_POST['username']);
-$password = $_POST['password'];
+$link = strtolower($_POST['url']);
+$linkLabel = $_POST['displayname'];
+$id = $_SESSION['userid'];
 
-$data = array("username" => $username, "password" => $password);
-$action = "authenticate";
+$data = array("url" => $url, "displayname" => $linkLabel, "user_id" => $id);
+$action = "addbookmark";
 $fields = array("apikey" => APIKEY,
              "apihash" => APIHASH,
               "data" => $data,
@@ -53,14 +51,13 @@ if(!property_exists($obj, "result")) {
 //dumps JSON server response containing data + result
 //var_dump($returnValue);
 
+print $obj->result;
 //all checks above are passed, so below code *should* be safe to run
 
-if($obj->result == "Success") {
-    $_SESSION['loggedIn'] = true;
-    $_SESSION['userid'] = $obj->data->id;
-    die(header("Location: " . BOOKMARKS));
-}
-else {
-    $_SESSION['errors'][] = $obj->data->message;
-    die(header("Location: " . LOGINFORM));
-}
+//if($obj->result == "Success") {
+  //  die(header("Location: " . BOOKMARKS));
+//}
+//else {
+ //   $_SESSION['errors'][] = "Sorry! There was an error adding your bookmark.";
+  //  die(header("Location: " . ADDBOOKMARKFORM));
+//}
