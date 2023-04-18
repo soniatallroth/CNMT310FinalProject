@@ -31,7 +31,7 @@ $link = strtolower($_POST['url']);
 $linkLabel = $_POST['displayname'];
 $id = $_SESSION['userid'];
 
-$data = array("url" => $url, "displayname" => $linkLabel, "user_id" => $id);
+$data = array("url" => $link, "displayname" => $linkLabel, "user_id" => $id);
 $action = "addbookmark";
 $fields = array("apikey" => APIKEY,
              "apihash" => APIHASH,

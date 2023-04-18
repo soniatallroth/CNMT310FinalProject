@@ -57,7 +57,7 @@ $urlList = $obj->data;
 
 if($obj->result == "Success") {
     foreach ($urlList as $bookmark) {
-        if(empty($bookmark)) {
+        if(!is_array($urlList) || count($bookmark) <= 0) {
         print '<h2>Sorry! No bookmarks were found to be displayed here :(</h2>';
        }
         else {
