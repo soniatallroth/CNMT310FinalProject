@@ -28,7 +28,8 @@ print   '    <!--Content-->';
 print   '    <main>';
 print   '        <div class="bookmark-page-container">';
 print   '            <h2 class="bookmark-heading">Bookmarks</h2>';
-print   '            <a class="add-mark-button" href="form-addbookmark.php">Add a bookmark</a>';
+print   '            <a class="add-mark-button" href="form-addbookmark.php">Add a bookmark</a><br>';
+print   '            <a class="add-mark-button" href="form-deletebookmark.php">Delete a bookmark</a>';
 print   '            <ul class="list-group bookmark-container">';
 
 if(!isset($_SESSION['userid'])) {
