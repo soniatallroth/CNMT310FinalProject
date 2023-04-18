@@ -51,13 +51,13 @@ if(!property_exists($obj, "result")) {
 //dumps JSON server response containing data + result
 //var_dump($returnValue);
 
-print $obj->result;
+//print $obj->result;
 //all checks above are passed, so below code *should* be safe to run
 
-//if($obj->result == "Success") {
-  //  die(header("Location: " . BOOKMARKS));
-//}
-//else {
- //   $_SESSION['errors'][] = "Sorry! There was an error adding your bookmark.";
-  //  die(header("Location: " . ADDBOOKMARKFORM));
-//}
+if($obj->result == "Success") {
+   die(header("Location: " . BOOKMARKS));
+}
+else {
+   $_SESSION['errors'][] = "Sorry! There was an error adding your bookmark.";
+   die(header("Location: " . ADDBOOKMARKFORM));
+}

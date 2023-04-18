@@ -1,7 +1,12 @@
 <?php
 
+require_once("WebServiceClient.php");
 require_once("autoload.php");
 require_once("Page.class.php");
+require_once(__DIR__ . "/../yoyoconfig.php");
+
+$url = "https://cnmt310.classconvo.com/bookmarks/";
+$client = new WebServiceClient($url);
 
 $page = new Page("Bookmarks");
 
@@ -23,11 +28,46 @@ print   '    <!--Content-->';
 print   '    <main>';
 print   '        <div class="bookmark-page-container">';
 print   '            <h2 class="bookmark-heading">Bookmarks</h2>';
-print   '            <button class="add-mark-button" href="form-addbookmark.php" type="button">Add a bookmark</button>';
+print   '            <a class="add-mark-button" href="form-addbookmark.php">Add a bookmark</a>';
 print   '            <ul class="list-group bookmark-container">';
-print   '                <a href="https://github.com/" class="list-group-item list-group-item-action">Github</a>';
-print   '                <a href="https://canvas.uwsp.edu/" class="list-group-item list-group-item-action">Canvas</a>';
-print   '                <a href="https://uwsp.edu" class="list-group-item list-group-item-action">UWSP website</a>';
+
+if(!isset($_SESSION['userid'])) {
+    $_SESSION['errors'][] = "Sorry! No User ID was found :(";
+    die(header("Location : " . BOOKMARKS)); 
+}
+
+$id = $_SESSION['userid'];
+
+$data = array("user_id" => $id);
+$action = "getbookmarks";
+$fields = array("apikey" => APIKEY,
+             "apihash" => APIHASH,
+              "data" => $data,
+             "action" => $action,
+             );
+$client->setPostFields($fields);
+
+$returnValue = $client->send();
+$obj = json_decode($returnValue);
+if(!property_exists($obj, "result")) {
+    die(print("Error, no result property"));
+}
+
+$urlList = $obj->data;
+
+if($obj->result == "Success") {
+    foreach ($urlList as $bookmark) {
+        if(empty($bookmark)) {
+        print '<h2>Sorry! No bookmarks were found to be displayed here :(</h2>';
+       }
+        else {
+        $href = $bookmark->url;
+        $title = $bookmark->displayname;
+        print "<a href='$href' target='_blank'>$title</a>";
+    }
+  }
+} 
+
 print   '            </ul>';
 print   '        </div>';
 print   '    </main>';
