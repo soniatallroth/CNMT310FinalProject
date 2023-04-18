@@ -57,13 +57,14 @@ $urlList = $obj->data;
 
 if($obj->result == "Success") {
     foreach ($urlList as $bookmark) {
-        if(!is_array($urlList) || count($bookmark) <= 0) {
+        if(!is_array($urlList) || count($urlList) <= 0) {
         print '<h2>Sorry! No bookmarks were found to be displayed here :(</h2>';
        }
         else {
         $href = $bookmark->url;
         $title = $bookmark->displayname;
-        print "<a href='$href' target='_blank'>$title</a>";
+        $bookmarkID = $bookmark->bookmark_id;
+        print "<a href='$href' target='_blank'>$title</a> &nbsp; ID: $bookmarkID";
     }
   }
 } 
