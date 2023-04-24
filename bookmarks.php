@@ -26,11 +26,21 @@ print   '        <a class="link" href="logout.php">Logout</a>';
 print   '    </header>';
 print   '    <!--Content-->';
 print   '    <main>';
-print   '        <div class="bookmark-page-container">';
-print   '            <h2 class="bookmark-heading">Bookmarks</h2>';
-print   '            <a class="add-mark-button" href="form-addbookmark.php">Add a bookmark</a><br>';
-print   '            <a class="add-mark-button" href="form-deletebookmark.php">Delete a bookmark</a>';
-print   '            <ul class="list-group bookmark-container">';
+print   '        <div class="bookmark-heading">';
+print   '            <h2>Bookmarks</h2>';
+print   '            <a class="button float-right" href="form-addbookmark.php">Add a bookmark</a>';
+print   '        </div>';
+print   '   <div class="tabs-wrapper">';
+print   '     <div class="tabs">';
+print   '       <div class="tab">';
+print   '         <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">';
+print   '         <label for="tab-1" class="tab-label">My bookmarks</label>';
+print   '         <div class="tab-content">';
+print   '   <ul class="list-group bookmark-container">';
+
+
+
+
 
 if(!isset($_SESSION['userid'])) {
     $_SESSION['errors'][] = "Sorry! No User ID was found :(";
@@ -65,14 +75,23 @@ if($obj->result == "Success") {
             $href = $bookmark->url;
             $title = $bookmark->displayname;
             $bookmarkID = $bookmark->bookmark_id;
-            print "<a href='$href' target='_blank'>$title</a> &nbsp; ID: $bookmarkID";
+            print "<li class='list-group-item list-group-item-action'><a href='$href' target='_blank'>$title</a><br>ID: $bookmarkID</li>";
     }
   }
 } 
-
-print   '            </ul>';
-print   '        </div>';
+print   '       </div>';
+print   '           </ul>';
+print   '       </div>';
+print   '       <div class="tab">';
+print   '         <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">';
+print   '         <label for="tab-2" class="tab-label">Popular</label>';
+print   '         <div class="tab-content">Hello</div>';
+print   '       </div>';
+print   '    </div>';
 print   '    </main>';
+print   '    <div class="bookmarks-footer">';
+print   '       <a class="button" href="form-deletebookmark.php">Delete a bookmark</a>';
+print   '    </div>';
 print   '    <!--Footer-->';
 print   '    <footer>';
 print   '        <p>Copyright © 2023</p>';

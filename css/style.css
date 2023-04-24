@@ -111,7 +111,6 @@ span {
 h2 {
     font-size: 32px;
     font-weight: 500;
-    padding: 10px;
 }
 .text-label {
 }
@@ -154,42 +153,87 @@ input[type="submit"]:hover {
 }
 
 /* BOOKMARK PAGE */
-button {
-    color: #fff;
-    background-color: #13795b;
-    border-radius: 6px;
-    text-align: center;
+.bookmark-heading {
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    height: 46px;
+    margin: 0 auto;
 }
-button:hover {
+.button {
+    text-align: center;
+    justify-content: center;
+    background-color: #13795b;
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+}
+.button:hover {
     background-color: #0f533f;
 }
 
-.bookmark-page-container {
-    display: grid;
-    grid-template-columns: 1.5fr 0.5fr;
-    grid-template-rows: 0.2fr 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-        "bookmark-heading add-mark-button"
-        "bookmark-container bookmark-container";
+/* tabs */
+.tabs-wrapper {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+.tabs {
+    position: relative;
+    margin: 30px 0px;
+}
+.tabs::before,
+.tabs::after {
+    content: "";
+    display: table;
+}
+.tabs::after {
+    clear: both;
+}
+.tab {
+    float: left;
+}
+.tab-switch {
+    display: none;
+}
+.tab-label {
+    position: relative;
+    display: block;
+    line-height: 2.75em;
+    height: 3em;
+    padding: 0 1.618em;
+    color: #495057;
+    cursor: pointer;
+    top: 0;
+}
+.tab-label:hover {
+    color: #000;
+}
+.tab-content {
+    min-height: 200px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 2.75em;
+    left: 0;
+    padding: 1.618rem;
+    background: #f5f5f5;
+    color: #000;
+    opacity: 0;
+}
+.tab-switch:checked + .tab-label {
+    color: #13795b;
+    background: #f5f5f5;
+    border-top: 2px solid #13795b;
+    z-index: 1;
+}
+.tab-switch:checked + label + .tab-content {
+    z-index: 2;
+    opacity: 1;
 }
 
-.bookmark-container {
-    grid-area: bookmark-container;
-}
-
-.bookmark-heading {
-    grid-area: bookmark-heading;
-}
-
-.add-mark-button {
-    grid-area: add-mark-button;
-}
-
+/* bookmarks lists */
 .list-group {
     display: flex;
     flex-direction: column;
@@ -222,6 +266,16 @@ button:hover {
 }
 .list-group-item + .list-group-item {
     border-top-width: 0;
+}
+.bookmarks-footer {
+    position: absolute;
+    bottom: 80px;
+    left: 0px;
+    background: #dee2e6;
+    width: 100%;
+    max-width: 900px;
+    height: 60px;
+    margin: 0 auto;
 }
 
 /* ADD BOOMKARKS PAGE (temporary) */
