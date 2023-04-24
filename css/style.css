@@ -213,7 +213,7 @@ input[type="submit"]:hover {
 .tab-content {
     min-height: 200px;
     width: 100%;
-    position: absolute;
+    /*  position: absolute; */
     z-index: 1;
     top: 2.75em;
     left: 0;
@@ -268,14 +268,14 @@ input[type="submit"]:hover {
     border-top-width: 0;
 }
 .bookmarks-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     bottom: 80px;
-    left: 0px;
-    background: #dee2e6;
     width: 100%;
-    max-width: 900px;
     height: 60px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 /* ADD BOOMKARKS PAGE (temporary) */
