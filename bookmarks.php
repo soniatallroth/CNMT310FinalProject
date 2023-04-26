@@ -68,11 +68,10 @@ if(!property_exists($obj, "result")) {
 $urlList = $obj->data;
 
 if($obj->result == "Success") {
-    foreach ($urlList as $bookmark) {
-        if(!is_array($urlList) || count($urlList) <= 0) {
-            print '<p>Sorry! No bookmarks were found to be displayed here :(</p>';
-    }
-        else {
+    if(!is_array($urlList) || count($urlList) <= 0) {
+        print '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
+    } else {
+        foreach ($urlList as $bookmark) {
             $href = $bookmark->url;
             $title = $bookmark->displayname;
             $bookmarkID = $bookmark->bookmark_id;
@@ -80,9 +79,9 @@ if($obj->result == "Success") {
             print "    <li><a href='$href' target='_blank'>$title</a><br>ID: $bookmarkID</li>";
             print '    <p class="hide"><a class="" href="#">X</a></p>';
             print '</div>';
+        }
     }
-  }
-} 
+}
 print   '                   </ul>';
 print   '               </div>';
 print   '           </div>'; // end of tab
