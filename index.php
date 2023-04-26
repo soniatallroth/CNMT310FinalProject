@@ -10,19 +10,23 @@ $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
 
 
 print $page->getTopSection();
-print   '<!-- Navigation -->';
-print   '<header>';
-print   '   <h1><a class="logo" href="index.php">stash</a></h1>';
+print   '   <!-- Navigation -->';
+print   '   <header>';
+print   '       <div class="header-left">';
+print   '           <h1><a class="logo" href="index.php">stash</a></h1>';
+print   '       </div>';
+print   '       <div class="header-right">';
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
-    print '     <a class="link" href="bookmarks.php">Bookmarks</a>';
-    print '     <a class="link" href="logout.php">Log Out</a>';
+    print '         <a class="link" href="bookmarks.php">Bookmarks</a>';
+    print '         <a class="link" href="logout.php">Log Out</a>';
 }
 else {
-    print '     <a class="link" href="login.php">Log In</a>';
+    print '         <a class="link" href="login.php">Log In</a>';
 }
 
-print   '</header>';
+print   '       </div>';
+print   '   </header>';
 print   '<!--Content-->';
 print   '<main>';
 print   '<div class="intro-text">';
