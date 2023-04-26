@@ -23,14 +23,16 @@ print   '                 <h2>Welcome!</h2>';
 print   '                 <p>Please enter your details.</p>';
 print   '            </div>';
 print   '            <form id="form_login" action="action-login.php" method="POST">';
+print '<span id="errorMsg" class="error">';
 
 if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
     foreach($_SESSION['errors'] as $field => $message) {
-        print '<span class=\"error\">' . $message . '</span><br>';
+        print $message;
     }
     $_SESSION['errors'] = array();
 }
 
+print '</span>';
 print   '                   <div id="form_login_feedback">';
 print   '                        <label class="text-label" for="username">Your username</label><br>';
 print   '                        <input class="text-input" id="username" name="username" type="text" placeholder="eg. johnsmith">';
@@ -42,6 +44,8 @@ print   '                        </div>';
 print   '                    </div>';
 print   '                </form>';
 
+print $page->addBottomElement('<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>');
+print $page->addBottomElement("<script src='script.js'></script>");
 print $page->getBottomSection();
 
 ?>
