@@ -27,6 +27,11 @@ foreach($required as $element) {
   }
 }
 
+if(!str_contains($_POST['url'], 'https://www.')) {
+    $_SESSION['errors'][] = "Please enter a valid URL that contains 'https://www.'";
+    die(header("location: " . ADDBOOKMARKFORM));
+}
+
 $link = strtolower($_POST['url']);
 $linkLabel = $_POST['displayname'];
 $id = $_SESSION['userid'];
