@@ -25,14 +25,14 @@ print   '       <div class="header-left">';
 print   '           <h1><a class="logo" href="index.php">stash</a></h1>';
 print   '       </div>';
 print   '       <div class="header-right">';
-print   '           <a class="link" href="logout.php">Logout</a>';
+print   '           <a class="link login-link" href="logout.php">Log Out</a>';
 print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
 print   '   <main>';
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
-print   '       <a class="button float-right" href="form-addbookmark.php">Add a bookmark</a>';
+print   '       <a class="button" href="form-addbookmark.php">Add a bookmark</a>';
 print   '       <a class="button" href="form-deletebookmark.php">Delete a bookmark</a>';
 print   '   </div>';
 print   '   <div class="tabs-wrapper">';
@@ -77,7 +77,7 @@ if($obj->result == "Success") {
             $bookmarkID = $bookmark->bookmark_id;
             print '<div class="display list-group-item list-group-item-action">';
             print "    <li><a href='$href' target='_blank'>$title</a><br>ID: $bookmarkID</li>";
-            print '    <p class="hide"><a class="" href="#">X</a></p>';
+            print '    <p class="hide"><a class="delete-link" href="#">X</a></p>';
             print '</div>';
         }
     }

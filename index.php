@@ -19,10 +19,10 @@ print   '       <div class="header-right">';
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
     print '         <a class="link" href="bookmarks.php">Bookmarks</a>';
-    print '         <a class="link" href="logout.php">Log Out</a>';
+    print '         <a class="link login-link" href="logout.php">Log Out</a>';
 }
 else {
-    print '         <a class="link" href="login.php">Log In</a>';
+    print '         <a class="link login-link" href="login.php">Log In</a>';
 }
 
 print   '       </div>';

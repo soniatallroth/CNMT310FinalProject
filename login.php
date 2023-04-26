@@ -39,7 +39,7 @@ print   '                        <input class="text-input" id="username" name="u
 print   '                        <label class="text-label" for="password">Your password</label><br>';
 print   '                        <input class="text-input" id="password" name="password" type="password" placeholder="********">';
 print   '                        <div class="button-holder">';
-print   '                            <input id="submit-btn" type="submit" value="Login">';
+print   '                            <input id="submit-btn" type="submit" value="Log In">';
 print   '                        </div>';
 print   '                    </div>';
 print   '                </form>';

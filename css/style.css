@@ -42,9 +42,10 @@ header {
 .header-right {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 .header-right .link {
-    padding: 0px 10px;
+    margin: 0px 10px;
 }
 .logo {
     color: #fff;
@@ -58,6 +59,11 @@ header {
 }
 .link:hover {
     text-decoration: underline;
+}
+.login-link {
+    border: 1px solid #fff;
+    border-radius: 6px;
+    padding: 10px;
 }
 
 /* login specific navbar */
@@ -292,8 +298,8 @@ input[type="submit"]:hover {
 }
 .hide {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 600;
-    font-weight: 36px;
+    font-weight: 400;
+    font-weight: 50px;
     color: #dc3545;
     display: none;
 }
@@ -301,6 +307,7 @@ input[type="submit"]:hover {
     display: block;
 }
 .delete-link {
+    padding: 10px;
 }
 
 /* ADD BOOMKARKS PAGE (temporary) */
