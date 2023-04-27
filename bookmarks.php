@@ -17,6 +17,7 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
+$page->addHeadElement('<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>');
 
 print $page->getTopSection();
 print   '   <!-- Navigation (for bookmarks page)-->';
@@ -32,12 +33,9 @@ print   '   <!--Content-->';
 print   '   <main>';
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
-//print   '       <a class="button" href="form-addbookmark.php">Add a bookmark</a>';
-//print   '       <a class="button" href="form-deletebookmark.php">Delete a bookmark</a>';
-print   '<!-- Modal Code -->';
-print   '<button class="button" id="myBtn">Add a bookmark</button>';
-print   '<button class="button" id="myBtn">Delete a bookmark</button>';
-print   '<div id="myModal" class="modal">';
+print   '<button class="button" id="addBtn">Add a bookmark</button>';
+print   '<button class="button" id="deleteBtn">Delete a bookmark</button>';
+print   '<div id="addModal" class="modal">';
 print   '<div class="modal-content">';
 print    '<span class="close">&times;</span>';
 print '             <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
@@ -50,8 +48,19 @@ print '                     <input id="submit-btn" type="submit" value="Add your
 print '                 </div>';
 print '             </form>';
 print  '</div>';
-
 print '</div>'; 
+print '</div>'; 
+print '<div id="deleteModal" class="modal">';
+print    '<div class="modal-content">';
+print        '<span class="close">&times;</span>';
+print        '<form id="delete-bookmark" action="action-deletebookmark.php" method="POST">';
+print '                 <label class="text-label" for="bookID">Enter the ID of the bookmark you want to delete.</label>';
+print '                 <input class="text-input" id="bookID" name="bookID" type="text" placeholder="e.g. 15">';
+print '                 <div class="button-holder">';
+print '                     <input id="submit-btn" type="submit" value="Delete Bookmark">';
+print '                 </div>';
+print '             </form>';
+print '         </div>';
 print   '   </div>';
 print   '   <div class="tabs-wrapper">';
 print   '       <div class="tabs">';
@@ -79,6 +88,7 @@ $client->setPostFields($fields);
 
 $returnValue = $client->send();
 $obj = json_decode($returnValue);
+
 if(!property_exists($obj, "result")) {
     die(print("Error, no result property"));
 }
@@ -100,6 +110,7 @@ if($obj->result == "Success") {
         }
     }
 }
+
 print   '                   </ul>';
 print   '               </div>';
 print   '           </div>'; // end of tab
