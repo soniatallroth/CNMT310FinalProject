@@ -32,8 +32,26 @@ print   '   <!--Content-->';
 print   '   <main>';
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
-print   '       <a class="button" href="form-addbookmark.php">Add a bookmark</a>';
-print   '       <a class="button" href="form-deletebookmark.php">Delete a bookmark</a>';
+//print   '       <a class="button" href="form-addbookmark.php">Add a bookmark</a>';
+//print   '       <a class="button" href="form-deletebookmark.php">Delete a bookmark</a>';
+print   '<!-- Modal Code -->';
+print   '<button class="button" id="myBtn">Add a bookmark</button>';
+print   '<button class="button" id="myBtn">Delete a bookmark</button>';
+print   '<div id="myModal" class="modal">';
+print   '<div class="modal-content">';
+print    '<span class="close">&times;</span>';
+print '             <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
+print '                 <label class="text-label" for="url">Add the link for your bookmark</label>';
+print '                 <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
+print '                 <label class="text-label" for="displayname">Name your bookmark</label>';
+print '                 <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
+print '                 <div class="button-holder">';
+print '                     <input id="submit-btn" type="submit" value="Add your bookmark">';
+print '                 </div>';
+print '             </form>';
+print  '</div>';
+
+print '</div>'; 
 print   '   </div>';
 print   '   <div class="tabs-wrapper">';
 print   '       <div class="tabs">';
@@ -98,6 +116,7 @@ print   '   <footer>';
 print   '       <p>Copyright © 2023</p>';
 print   '   </footer>';
 
+print $page->addBottomElement("<script src='modal.js'></script>");
 print $page->getBottomSection();
 
 ?>
