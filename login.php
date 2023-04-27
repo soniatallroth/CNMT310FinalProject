@@ -5,6 +5,10 @@ require_once("Page.class.php");
 
 $page = new Page("Login Portal");
 
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) { 
+    die(header("Location:" . BOOKMARKS)); 
+}
+
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
     

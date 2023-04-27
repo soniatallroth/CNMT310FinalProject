@@ -173,12 +173,6 @@ input[type="submit"]:hover {
     align-items: center;
     margin: 0 auto;
 }
-.bookmark-heading button:nth-child(1) {
-    align-items: right;
-}
-.bookmark-heading button:last-child {
-    margin-left: 10px; /* adjust the value as needed */
-}
 .button {
     text-align: center;
     justify-content: center;
@@ -354,7 +348,6 @@ input[type="submit"]:hover {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    transition: opacity 500ms ease, visibility 0s ease 500ms;
 }
   /* Modal Content/Box */
 .modal-content {
