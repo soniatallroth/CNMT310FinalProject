@@ -31,7 +31,7 @@ print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
 print   '   <main>';
-print   "<h2 class='hellostatement'>Welcome, " . $_SESSION['user'] .  ".</h2><br>";
+print   "<h2 class='hellostatement'>Welcome back, " . $_SESSION['user'] .  ".</h2><br>";
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
 print   '<button class="button" id="addBtn">Add a bookmark</button>';
