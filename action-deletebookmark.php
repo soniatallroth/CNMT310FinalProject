@@ -58,5 +58,5 @@ if($obj->result == "Success") {
 }
 else {
    $_SESSION['errors'][] = "Sorry! There was an error deleting your bookmark.";
-   die(header("Location: " . DELETEBOOKMARKFORM));
+   die(header("Location: " . BOOKMARKS));
 }

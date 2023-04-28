@@ -15,7 +15,7 @@ $required = array('url', 'displayname');
 foreach($required as $element) {
   if(!isset($_POST[$element])){
     $_SESSION['errors'][] = "Please enter a URL/link and/or label.";
-    die(header("location: " . ADDBOOKMARKFORM));
+    die(header("location: " . BOOKMARKS));
   }
 }
 
@@ -23,13 +23,13 @@ foreach($required as $element) {
 foreach($required as $element) {
   if(empty($_POST[$element])) {
     $_SESSION['errors'][] = "Please input a " .ucfirst($element);
-    die(header("location: " . ADDBOOKMARKFORM));
+    die(header("location: " . BOOKMARKS));
   }
 }
 
 if(!str_contains($_POST['url'], 'https://www.')) {
     $_SESSION['errors'][] = "Please enter a valid URL that contains 'https://www.'";
-    die(header("location: " . ADDBOOKMARKFORM));
+    die(header("location: " . BOOKMARKS));
 }
 
 $link = strtolower($_POST['url']);
@@ -64,5 +64,5 @@ if($obj->result == "Success") {
 }
 else {
    $_SESSION['errors'][] = "Sorry! There was an error adding your bookmark.";
-   die(header("Location: " . ADDBOOKMARKFORM));
+   die(header("Location: " . BOOKMARKS));
 }

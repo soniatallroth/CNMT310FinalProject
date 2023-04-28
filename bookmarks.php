@@ -3,6 +3,7 @@
 require_once("WebServiceClient.php");
 require_once("autoload.php");
 require_once("classes/Page.class.php");
+require_once("classes/Bookmarks.class.php");
 require_once(__DIR__ . "/../yoyoconfig.php");
 
 $url = "https://cnmt310.classconvo.com/bookmarks/";
@@ -14,6 +15,7 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
     $_SESSION['errors'][] = "Please input a username and password to access the bookmarks page.";
     die(header("Location:" . LOGINFORM)); 
 }
+$books = new Bookmarks();
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
@@ -78,39 +80,7 @@ if(!isset($_SESSION['userid'])) {
 
 $id = $_SESSION['userid'];
 
-$data = array("user_id" => $id);
-$action = "getbookmarks";
-$fields = array("apikey" => APIKEY,
-             "apihash" => APIHASH,
-              "data" => $data,
-             "action" => $action,
-             );
-$client->setPostFields($fields);
-
-$returnValue = $client->send();
-$obj = json_decode($returnValue);
-
-if(!property_exists($obj, "result")) {
-    die(print("Error, no result property"));
-}
-
-$urlList = $obj->data;
-
-if($obj->result == "Success") {
-    if(!is_array($urlList) || count($urlList) <= 0) {
-        print '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
-    } else {
-        foreach ($urlList as $bookmark) {
-            $href = $bookmark->url;
-            $title = $bookmark->displayname;
-            $bookmarkID = $bookmark->bookmark_id;
-            print '<div class="display list-group-item list-group-item-action">';
-            print "    <li><a href='$href' target='_blank'>$title</a><br>ID: $bookmarkID</li>";
-            print '    <p class="hide"><a class="delete-link" href="#">X</a></p>';
-            print '</div>';
-        }
-    }
-}
+$books->getBookmarks($id, $client);
 
 print   '                   </ul>';
 print   '               </div>';
