@@ -1,7 +1,7 @@
 <?php
 
 require_once("autoload.php");
-require_once("Page.class.php");
+require_once("classes/Page.class.php");
 
 $page = new Page("Login Portal");
 

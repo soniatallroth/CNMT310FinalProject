@@ -2,7 +2,7 @@
 
 require_once("WebServiceClient.php");
 require_once("autoload.php");
-require_once("Page.class.php");
+require_once("classes/Page.class.php");
 require_once(__DIR__ . "/../yoyoconfig.php");
 
 $url = "https://cnmt310.classconvo.com/bookmarks/";
