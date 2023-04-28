@@ -49,7 +49,7 @@ print   '                    </div>';
 print   '                </form>';
 
 print $page->addBottomElement('<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>');
-print $page->addBottomElement("<script src='script.js'></script>");
+print $page->addBottomElement("<script src='js/validator.js'></script>");
 print $page->getBottomSection();
 
 ?>

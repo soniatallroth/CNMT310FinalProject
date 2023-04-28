@@ -128,7 +128,7 @@ print   '   <footer>';
 print   '       <p>Copyright © 2023</p>';
 print   '   </footer>';
 
-print $page->addBottomElement("<script src='modal.js'></script>");
+print $page->addBottomElement("<script src='js/modal.js'></script>");
 print $page->getBottomSection();
 
 ?>
