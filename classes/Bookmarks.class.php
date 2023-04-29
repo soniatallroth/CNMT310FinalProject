@@ -61,7 +61,7 @@ class Bookmarks {
                     $bookmarkID = $bookmark->bookmark_id;
                     print '<div class="display list-group-item list-group-item-action">';
                     print "    <li><a href='$href' target='_blank'>$title</a><br>ID: $bookmarkID</li>";
-                    print '    <p class="hide"><a class="delete-link" href="#">X</a></p>';
+                    print '    <a class="delete-link hide" href="#"><i class="fa-solid fa-xmark"></i></a>';
                     print '</div>';
                 }
             }
