@@ -71,6 +71,7 @@ print   '           <div class="tab">';
 print   '               <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">';
 print   '               <label for="tab-1" class="tab-label">My bookmarks</label>';
 print   '               <div class="tab-content">';
+print	'					<input id="search" type="text" />';
 print   '                   <ul class="list-group bookmark-container">';
 
 if(!isset($_SESSION['userid'])) {
@@ -81,7 +82,7 @@ if(!isset($_SESSION['userid'])) {
 $id = $_SESSION['userid'];
 
 $books->getBookmarks($id, $client);
-
+$books->autocomplete();
 print   '                   </ul>';
 print   '               </div>';
 print   '           </div>'; // end of tab
@@ -99,6 +100,6 @@ print   '       <p>Copyright © 2023</p>';
 print   '   </footer>';
 
 print $page->addBottomElement("<script src='js/modal.js'></script>");
-print $page->getBottomSection();
 
+print $page->getBottomSection();
 ?>

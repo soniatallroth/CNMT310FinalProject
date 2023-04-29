@@ -6,6 +6,7 @@ class Bookmarks {
     protected $_url;
     protected $_id;
     protected $_bookID;
+	protected $urlList;
     
     function __construct() {}
     public static function create() {
@@ -48,13 +49,13 @@ class Bookmarks {
             die(print("Error, no result property"));
         }
 
-        $urlList = $obj->data;
+        $this->urlList = $obj->data;
 
         if ($obj->result == "Success") {
-            if (!is_array($urlList) || count($urlList) <= 0) {
+            if (!is_array($this->urlList) || count($this->urlList) <= 0) {
                 print '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
             } else {
-                foreach ($urlList as $bookmark) {
+                foreach ($this->urlList as $bookmark) {
                     $href = $bookmark->url;
                     $title = $bookmark->displayname;
                     $bookmarkID = $bookmark->bookmark_id;
@@ -183,6 +184,35 @@ class Bookmarks {
         die(header("Location: " . BOOKMARKS));
         }
     }
+	
+	public function autocomplete() {
+		$ac = array();
+		foreach ($this->urlList as $key => $val) {
+		  $ac[$key]['id'] = $val->bookmark_id;
+		  $ac[$key]['label'] = $val->displayname;
+		  $ac[$key]['value'] = $val->url;
+}
+			print "<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css\">";
+			print "<script src=\"https://code.jquery.com/jquery-3.6.0.js\"></script>";
+			print "<script src=\"https://code.jquery.com/ui/1.13.2/jquery-ui.js\"></script>";
+			print "<script type=\"text/javascript\">";
+
+			print "  $( function() {\n";
+
+			print "\t\tvar bookmarks = " . json_encode($ac) . ";\n";
+
+			print "\t\t$(\"#search\").autocomplete({\n";
+
+			print "\t\t\tminLength: 0,\n";
+			print "\t\t\tsource: bookmarks,\n";
+
+			print "\t\t\tselect: function( event, ui ) {\n";
+			print "\t\t\t\twindow.location.href = ui.item.value;\n";
+			print "\t\t\t}\n";
+			print "\t\t});\n";
+			print "\t} );\n";
+			print "</script>";
+	}
 }
 
 ?>
