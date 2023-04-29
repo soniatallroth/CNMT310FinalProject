@@ -19,7 +19,11 @@ $books = new Bookmarks();
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
+<<<<<<< Updated upstream
 $page->addHeadElement('<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>');
+=======
+$page->addHeadElement('<script src="https://kit.fontawesome.com/c288a0b638.js" crossorigin="anonymous"></script>');
+>>>>>>> Stashed changes
 
 print $page->getTopSection();
 print   '   <!-- Navigation (for bookmarks page)-->';
@@ -32,8 +36,12 @@ print   '           <a class="link login-link" href="logout.php">Log Out</a>';
 print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
+<<<<<<< Updated upstream
 print   '   <main>';
 print   "<h2 class='hellostatement'>Welcome back, " . $_SESSION['user'] .  ".</h2><br>";
+=======
+print   '   <main class="bookmarks-main">';
+>>>>>>> Stashed changes
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
 print   '<button class="button" id="addBtn">Add a bookmark</button>';
@@ -71,8 +79,16 @@ print   '           <div class="tab">';
 print   '               <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">';
 print   '               <label for="tab-1" class="tab-label">My bookmarks</label>';
 print   '               <div class="tab-content">';
+<<<<<<< Updated upstream
 print	'					<input id="search" type="text" />';
 print   '                   <ul class="list-group bookmark-container">';
+=======
+print   '                   <div class="search-container">';
+print   '                       <input type="search" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
+print   '                       <a class="button" href="#">Search</a>';
+print   '                   </div>';
+print   '                   <ul class="list-group bookmark-container"><br>';
+>>>>>>> Stashed changes
 
 if(!isset($_SESSION['userid'])) {
     $_SESSION['errors'][] = "Sorry! No User ID was found :(";
@@ -81,8 +97,43 @@ if(!isset($_SESSION['userid'])) {
 
 $id = $_SESSION['userid'];
 
+<<<<<<< Updated upstream
 $books->getBookmarks($id, $client);
 $books->autocomplete();
+=======
+$data = array("user_id" => $id);
+$action = "getbookmarks";
+$fields = array("apikey" => APIKEY,
+             "apihash" => APIHASH,
+              "data" => $data,
+             "action" => $action,
+             );
+$client->setPostFields($fields);
+
+$returnValue = $client->send();
+$obj = json_decode($returnValue);
+if(!property_exists($obj, "result")) {
+    die(print("Error, no result property"));
+}
+
+$urlList = $obj->data;
+
+if($obj->result == "Success") {
+    if(!is_array($urlList) || count($urlList) <= 0) {
+        print '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
+    } else {
+        foreach ($urlList as $bookmark) {
+            $href = $bookmark->url;
+            $title = $bookmark->displayname;
+            $bookmarkID = $bookmark->bookmark_id;
+            print '<div class="display list-group-item list-group-item-action">';
+            print "    <li><a href='$href' target='_blank'>$title</a><br>ID: $bookmarkID</li>";
+            print '    <a class="hide" href="#"><i class="fa-solid fa-xmark"></i></a>';
+            print '</div>';
+        }
+    }
+}
+>>>>>>> Stashed changes
 print   '                   </ul>';
 print   '               </div>';
 print   '           </div>'; // end of tab
@@ -94,10 +145,6 @@ print   '           </div>'; // end of tab
 print   '       </div>'; // end of tabs
 print   '   </div>'; // end of tabs-wrapper
 print   '   </main>';
-print   '   <!--Footer-->';
-print   '   <footer>';
-print   '       <p>Copyright © 2023</p>';
-print   '   </footer>';
 
 print $page->addBottomElement("<script src='js/modal.js'></script>");
 

@@ -1,6 +1,8 @@
 /* COLORS
-light-gray: #ececec;
+light-light-gray: #ececec;
+light-gray: #BABABA;
 gray: #adb5bd;
+dark-gray: #585858;
 green: #13795b;
 white: #fff;
 black: #000;
@@ -16,26 +18,28 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    min-height: 100%;
     width: 100%;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
         Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    min-height: calc(100vh - 0px);
+    height: 100%;
 }
 main {
+
+}
+.bookmarks-main {
     padding: 50px;
 }
 
 /* navbar */
 header {
-    height: 75px;
+    height: 9%;
     width: 100%;
     background-color: #13795b;
-    padding: 0px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0px 20px;
 }
 .header-right {
     display: flex;
@@ -75,19 +79,12 @@ header {
 }
 
 /* footer */
-footer {
+.footer {
     background: #ececec;
-    width: 100%;
-    height: 60px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    z-index: 100;
-    padding: 20px;
-}
-.footer-link:hover {
-    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 9%;
 }
 
 /* HOME PAGE */
@@ -99,10 +96,61 @@ footer {
     font-weight: 300;
     letter-spacing: 1px;
 }
-span {
+.main-container {
+    width: 100%;
+    height: 82%;
+    display: flex;
+}
+.main-left {
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.main-left .heading {
+    font-size: 3.75vw;
+}
+.main-left p {
+    padding-bottom: 30px;
+    font-size: 1.25vw;
+    font-weight: 400;
+}
+.main-left span {
     color: #13795b;
     font-weight: 600;
-    letter-spacing: normal;
+    font-size: 4.2vw;
+}
+.main-right {
+    color: #fff;
+    font-weight: 300;
+    background-image: url(../images/photo.png);
+    background-color: #13795b;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    align-items: center;
+    font-size: 28px;
+}
+.main-right span {
+    font-weight: 500;
+}
+.main-right ul {
+    z-index: 50;
+    position: absolute;
+    list-style-position: outside;
+}
+.main-right li {
+    padding: 10px 0px;
+    font-size: 1.9vw;
+}
+.main-right img {
+    z-index: -100;
+    object-fit: fill;
 }
 
 /* LOGIN PAGE */
@@ -167,7 +215,7 @@ input[type="submit"]:hover {
 
 /* BOOKMARK PAGE */
 .bookmark-heading {
-    max-width: 900px;
+    max-width: 1000px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -190,7 +238,7 @@ input[type="submit"]:hover {
 .tabs-wrapper {
     display: block;
     position: relative;
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
     margin: 0 auto;
 }
@@ -233,7 +281,7 @@ input[type="submit"]:hover {
     top: 2.75em;
     left: 0;
     padding: 1.618rem;
-    background: #ececec;
+    background: #ECECEC;
     color: #000;
     opacity: 0;
 }
@@ -248,13 +296,29 @@ input[type="submit"]:hover {
     opacity: 1;
 }
 
+/* search */
+.search-container {
+    display: flex;
+}
+input[type="search"] {
+    width: 1000px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 0px 10px;
+    margin-right: 20px;
+    border: 1px solid #BABABA;
+}
+input[type="search"]::placeholder {
+    color: #BABABA;
+}
+
 /* bookmarks lists */
 .list-group {
     display: flex;
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    border-radius: 0.25rem;
+    border-radius: 6px;
 }
 .list-group-item {
     position: relative;
@@ -263,7 +327,7 @@ input[type="submit"]:hover {
     color: #212529;
     text-decoration: none;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 1px solid #BABABA;
 }
 .list-group-item:hover {
     z-index: 1;
@@ -294,13 +358,10 @@ input[type="submit"]:hover {
     align-items: center;
 }
 .hide {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 400;
-    font-weight: 50px;
-    color: #dc3545;
     display: none;
+    color: #DC3545;
 }
-.display:hover .hide {
+.display:hover > .hide {
     display: block;
 }
 .delete-link {

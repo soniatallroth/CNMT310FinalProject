@@ -28,15 +28,33 @@ else {
 print   '       </div>';
 print   '   </header>';
 print   '<!--Content-->';
-print   '<main>';
-print   '<div class="intro-text">';
-print   '   <p><span>stash</span> your bookmarks with us.</p>';
+// print   '<main>';
+print   '<div class="main-container">';
+print   '   <div class="main-left">';
+print   '       <p class="heading"><span>stash</span> your bookmarks with us.</p>';
+print   '       <p>Keep your bookmarks in one centralized location with our storage solution.</p>';
+
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+    print '         <a class="button" href="bookmarks.php">View Bookmarks</a>';
+}
+else {
+    print '         <a class="button" href="login.php">Log In</a>';
+}
+
+print   '   </div>';
+print   '   <div class="main-right">';
+print   '       <ul></ul>';
+print   '           <li><span>Add</span>, <span>delete</span>, and <span>access</span> your bookmarks all from the same place</li>';
+print   '           <li>View <span>popular bookmarks</span> from users across the site</li>';
+print   '       </ul>';
+print   '   </div>';
+print   '   <!--Footer-->';
+
 print   '</div>';
-print   '</main>';
-print   '<!--Footer-->';
-print   '<footer>'; 
-print   '   <p>Copyright © 2023</p>';
-print   '</footer>';       
+// print   '</main>';
+print   '   <div class="footer">'; 
+print   '       <p>Copyright © 2023</p>';
+print   '   </div>'; 
 
 print $page->getBottomSection();
 
