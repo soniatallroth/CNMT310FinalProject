@@ -41,14 +41,15 @@ print   '       <button class="button" id="addBtn">Add a bookmark</button>';
 print   '       <button class="button" id="deleteBtn">Delete a bookmark</button>';
 print   '       <div id="addModal" class="modal">';
 print   '           <div class="modal-content">';
-print   '               <span class="close">&times;</span>';
 print   '               <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
+//print   '                   <span class="close">&times;</span>';
 print   '                   <label class="text-label" for="url">Add the link for your bookmark</label>';
 print   '                   <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
 print   '                   <label class="text-label" for="displayname">Name your bookmark</label>';
 print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
 print   '                   <div class="button-holder">';
 print   '                       <input id="submit-btn" type="submit" value="Add your bookmark">';
+print   '                       <span class="close close-words">Close window</span>';
 print   '                   </div>';
 print   '                </form>';
 print   '           </div>';
@@ -56,12 +57,13 @@ print   '       </div>';
 print   '   </div>'; 
 print   '       <div id="deleteModal" class="modal">';
 print   '           <div class="modal-content">';
-print   '               <span class="close">&times;</span>';
 print   '               <form id="delete-bookmark" action="action-deletebookmark.php" method="POST">';
+//print   '               <span class="close">&times;</span>';
 print   '                   <label class="text-label" for="bookID">Enter the ID of the bookmark you want to delete.</label>';
 print   '                   <input class="text-input" id="bookID" name="bookID" type="text" placeholder="e.g. 15">';
 print   '                   <div class="button-holder">';
 print   '                       <input id="submit-btn" type="submit" value="Delete Bookmark">';
+print   '                       <span class="close close-words">Close window</span>';
 print   '                   </div>';
 print   '               </form>';
 print   '           </div>';
@@ -73,7 +75,7 @@ print   '                   <input type="radio" name="css-tabs" id="tab-1" check
 print   '                   <label for="tab-1" class="tab-label">My bookmarks</label>';
 print   '                   <div class="tab-content">';
 print   '                       <div class="search-container">';
-print   '                           <input type="search" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
+print   '                           <input id="search" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
 print   '                           <a class="button" href="#">Search</a>';
 print   '                       </div>';
 print   '                       <ul class="list-group bookmark-container"><br>';
@@ -90,12 +92,22 @@ $books->autocomplete();
 
 print   '                   </ul>';
 print   '               </div>';
-print   '           </div>'; // end of tab
+print   '           </div>'; // end of my bookmarks tab
 print   '           <div class="tab">'; 
 print   '               <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">';
 print   '               <label for="tab-2" class="tab-label">Popular</label>';
-print   '               <div class="tab-content">Hello</div>';
-print   '           </div>'; // end of tab
+print   '               <div class="tab-content">';
+print   '                   <div class="search-container">';
+print   '                       <input id="search" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
+print   '                       <a class="button" href="#">Search</a>';
+print   '                   </div>';
+print   '                   <ul class="list-group bookmark-container"><br>';
+
+// POPULAR BOOKMARK TAB STUFF GOES HERE!
+
+print   '                   </ul>';
+print   '               </div>';
+print   '           </div>'; // end of popular tab
 print   '       </div>'; // end of tabs
 print   '   </div>'; // end of tabs-wrapper
 print   '   </main>';

@@ -59,10 +59,19 @@ class Bookmarks {
                     $href = $bookmark->url;
                     $title = $bookmark->displayname;
                     $bookmarkID = $bookmark->bookmark_id;
-                    print '<div class="display list-group-item list-group-item-action">';
-                    print "    <li><a href='$href' target='_blank'>$title</a><br>ID: $bookmarkID</li>";
-                    print '    <a class="delete-link hide" href="#"><i class="fa-solid fa-xmark"></i></a>';
-                    print '</div>';
+                    print   '<div class="display list-group-item list-group-item-action">';
+                    print   '   <div class="li-container">';
+                    print   '       <div class="li-left">';
+                    print   "           <li><a class='li-title' href='$href' target='_blank'>$title</a></li>";
+                    print   "           <p class='li-link'>$href</p>";
+                    print   '       </div>';
+                    print   '       <div class="li-right">';
+                    print   "           <p class'li-bookmarkID' >ID: $bookmarkID</p>";  
+                    print   "           <p class='li-viewcount' >View count: $id</p>"; // change this variable to correctly add in view count! 
+                    print   '       </div>';
+                    print   '   </div>'; // end of .li-container
+                    print   '   <a class="delete-link xmark" href="#"><i class="fa-solid fa-xmark"></i></a>';
+                    print   '</div>';
                 }
             }
         }

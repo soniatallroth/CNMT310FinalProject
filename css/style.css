@@ -25,7 +25,6 @@ body {
     height: 100%;
 }
 main {
-
 }
 .bookmarks-main {
     padding: 50px;
@@ -301,15 +300,14 @@ input[type="submit"]:hover {
 .search-container {
     display: flex;
 }
-input[type="search"] {
+.search-container input[type="text"] {
     width: 1000px;
     background-color: #fff;
     border-radius: 4px;
-    padding: 0px 10px;
-    margin-right: 20px;
+    margin: 0px 16px 0px 0px;
     border: 1px solid #BABABA;
 }
-input[type="search"]::placeholder {
+.search-container input[type="text"]::placeholder {
     color: #BABABA;
 }
 
@@ -346,23 +344,53 @@ input[type="search"]::placeholder {
 .list-group-item + .list-group-item {
     border-top-width: 0;
 }
-.bookmarks-footer {
+
+/* individual bookmark list styles */ 
+.li-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 80px;
+    justify-content: space-between;
+    width: 100%;
 }
+.li-left {
+}
+.li-right {
+    text-align: right;
+}
+.li-title {
+    font-weight: 500;
+    font-size: 18px;
+}
+.li-link {
+    font-weight: 300;
+    font-style: italic;
+    padding: 10px 0px 0px 0px;
+}
+.li-bookmarkID {
+    font-weight: 300;
+}
+.li-viewcount {
+    padding: 10px 0px 0px 0px;    
+    font-weight: 300;
+}
+
+/* bookmarks x */
 .display {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.hide {
+.xmark {
     display: none;
+    color: #000;
+    font-size: 18px;
+    margin-left: 12px;
+}
+.xmark:hover {
     color: #DC3545;
 }
-.display:hover > .hide {
+.display:hover > .xmark {
     display: block;
 }
 .delete-link {
@@ -383,13 +411,11 @@ input[type="search"]::placeholder {
     flex-direction: column;
     padding: 30px 60px;
 }
-
 .delete-bookmark-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 #delete-bookmark {
     border-radius: 12px;
     width: 500px;
@@ -416,26 +442,40 @@ input[type="search"]::placeholder {
 
 /* Modal Content/Box */
 .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: transparent;
-    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    width: 30%; /* Could be more or less, depending on screen size */
 }
+
 /* The Close Button */
 .close {
     color: #000;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    text-align: right;
+    /* font-size: 28px; */
 }
-  
+.close-words {
+    /* font-size: 24px; */
+    text-align: center;
+    padding: 10px;
+    margin: 20px;
+    color: #495057;
+}
 .close:hover,
 .close:focus {
     color: #dc3545;
     text-decoration: none;
     cursor: pointer;
 } 
+.close-words:hover,
+.close-words:focus {
+    text-decoration: underline;
+    color: #495057;
+}
 
+/* welcome message for users on bookmarks page */
 .hellostatement {
     font-weight: 300;
     color: #fff;
