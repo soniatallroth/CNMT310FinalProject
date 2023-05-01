@@ -1,6 +1,7 @@
 "use strict"
 
 $(document).ready( () => {
+	
 $('#username').focus();
 let isValid;
 let umsg = "";
@@ -24,27 +25,25 @@ function validatePassword() {
     let password = $('#password').val().trim();
 
     if (password == ""){
-        pmsg = 'You must enter a valid password.';
+        pmsg = 'You must enter a password.';
 		isValid = false;
     }
 }
 
-/*
     // Check if password is valid when user navigates out of input
-    $("#username").bind('blur', function(event) {
+    $("#username").bind('keyup', function(event) {
         validateUsername();
         $("#errorMsg").text(umsg);
     } )
 
     // Check if password is entered when user navigates out of input
-    $("#password").bind('blur', function(event) {
+    $("#password").bind('keyup', function(event) {
         validatePassword();
         $("#errorMsg").text(pmsg);
     } )
-	*/
 
     // Check if both input fields are valid and output any corresponding errors
-    $('#form_login').submit( event => {
+	$('#form_login').submit( event => {
 		isValid = true;
         validateUsername();
         validatePassword();
@@ -65,6 +64,5 @@ function validatePassword() {
 		
 		
     })
-
 
 });

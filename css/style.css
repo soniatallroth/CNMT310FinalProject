@@ -211,6 +211,9 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0f533f;
 }
+.error{
+	color: red !important;
+}
 
 /* BOOKMARK PAGE */
 .bookmark-heading {
