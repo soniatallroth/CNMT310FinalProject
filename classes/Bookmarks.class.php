@@ -59,7 +59,7 @@ class Bookmarks {
                     $href = $bookmark->url;
                     $title = $bookmark->displayname;
                     $bookmarkID = $bookmark->bookmark_id;
-                    print   '<div class="display list-group-item list-group-item-action">';
+                    print   '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
                     print   '   <div class="li-container">';
                     print   '       <div class="li-left">';
                     print   "           <li><a class='li-title' href='$href' target='_blank'>$title</a></li>";
@@ -204,7 +204,7 @@ class Bookmarks {
 			print "<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css\">";
 			print "<script src=\"https://code.jquery.com/jquery-3.6.0.js\"></script>";
 			print "<script src=\"https://code.jquery.com/ui/1.13.2/jquery-ui.js\"></script>";
-			print "<script type=\"text/javascript\">";
+/*			print "<script type=\"text/javascript\">";
 
 			print "  $( function() {\n";
 
@@ -214,6 +214,8 @@ class Bookmarks {
 
 			print "\t\t\tminLength: 0,\n";
 			print "\t\t\tsource: bookmarks,\n";
+			// print 'position: { my : "center", at: "center" }';
+			print 'appendTo: "#search"';
 
 			print "\t\t\tselect: function( event, ui ) {\n";
 			print "\t\t\t\twindow.location.href = ui.item.value;\n";
@@ -221,6 +223,17 @@ class Bookmarks {
 			print "\t\t});\n";
 			print "\t} );\n";
 			print "</script>";
+*/
+			print '<script>';
+			print '$( function() {';
+			print 'var srcdata = ' . json_encode($ac) . ";\n";
+			print '$("#search").on("keyup", function() {';
+			print 'var value = $(this).val().toLowerCase();';
+			print '$(".list-group-item").filter(function() { $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);';
+			print '});';
+			print '});';
+			print '});';
+			print '</script>';
 	}
 }
 
