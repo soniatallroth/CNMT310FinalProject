@@ -15,15 +15,7 @@ $required = array('url', 'displayname');
 // checks to make sure both form fields were set, displays error message if not 
 foreach($required as $element) {
   if(!isset($_POST[$element])){
-    $_SESSION['errors'][] = "Please enter a URL/link and/or label.";
-    die(header("location: " . BOOKMARKS));
-  }
-}
-
-// checks if URL or label field is empty, displays error message if so 
-foreach($required as $element) {
-  if(empty($_POST[$element])) {
-    $_SESSION['errors'][] = "Please input a " .ucfirst($element);
+    $_SESSION['errors'][] = "Please enter a valid URL and label for your bookmark.";
     die(header("location: " . BOOKMARKS));
   }
 }

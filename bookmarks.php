@@ -35,6 +35,12 @@ print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
 print   '   <main class="bookmarks-main">';
+if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+    foreach($_SESSION['errors'] as $field => $message) {
+        print '<span class=\"error\">' . $message . '</span><br>';
+    }
+    $_SESSION['errors'] = array();
+}
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
 print   '       <button class="button" id="addBtn">Add a bookmark</button>';

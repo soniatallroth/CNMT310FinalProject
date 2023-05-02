@@ -79,29 +79,6 @@ class Bookmarks {
     public function addBookmark($id, $client) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
 
-        $required = array('url', 'displayname');
-
-        // checks to make sure both form fields were set, displays error message if not 
-        foreach($required as $element) {
-            if(!isset($_POST[$element])){
-                $_SESSION['errors'][] = "Please enter a URL/link and/or label.";
-                die(header("location: " . BOOKMARKS));
-            }
-        }
-
-        // checks if URL or label field is empty, displays error message if so 
-        foreach($required as $element) {
-            if(empty($_POST[$element])) {
-                $_SESSION['errors'][] = "Please input a " .ucfirst($element);
-                die(header("location: " . BOOKMARKS));
-            }
-        }
-
-        if(!str_contains($_POST['url'], 'https://')) {
-            $_SESSION['errors'][] = "Please enter a valid URL that contains 'https://'";
-            die(header("location: " . BOOKMARKS));
-        }
-
         $link = strtolower($_POST['url']);
         $linkLabel = $_POST['displayname'];
         $id = $_SESSION['userid'];
@@ -140,24 +117,6 @@ class Bookmarks {
     }
     public function deleteBookmark($id, $client) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
-
-        $required = array('bookID');
-
-        // checks to make sure both form fields were set, displays error message if not 
-        foreach($required as $element) {
-        if(!isset($_POST[$element])){
-            $_SESSION['errors'][] = "Please enter a bookmark ID.";
-            die(header("location: " . BOOKMARKS));
-        }
-        }
-
-        // checks if URL or label field is empty, displays error message if so 
-        foreach($required as $element) {
-        if(empty($_POST[$element])) {
-            $_SESSION['errors'][] = "Please input a " .ucfirst($element);
-            die(header("location: " . BOOKMARKS));
-        }
-        }
 
         $bookID = $_POST['bookID'];
         $id = $_SESSION['userid'];
