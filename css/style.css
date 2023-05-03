@@ -379,8 +379,7 @@ input[type="submit"]:hover {
     font-weight: 300;
 }
 .li-viewcount {
-    padding: 10px 0px 0px 0px;    
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /* bookmarks x */
@@ -456,19 +455,13 @@ input[type="submit"]:hover {
     transform: translate(-50%, -50%);
     background-color: transparent;
     padding: 20px;
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
 }
 /* animation for modals */ 
-@-webkit-keyframes animatetop {
-  from {top:-2000px; opacity:0} 
-  to {top:0; opacity:1}
-}
 @keyframes animatetop {
-  from {top:-2000px; opacity:0}
-  to {top:0; opacity:1}
+  from {top:-300px; opacity:0}
+  to {top:50%; opacity:1}
 }
 
 /* The Close Button */
