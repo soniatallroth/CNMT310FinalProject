@@ -69,7 +69,7 @@ class Bookmarks {
                     print   "           <p class='li-link'>$href</p>";
                     print   '       </div>';
                     print   '       <div class="li-right">';
-                    print   "           <p class'li-bookmarkID' >ID: $bookmarkID</p>";  
+                    //print   "           <p class'li-bookmarkID' >ID: $bookmarkID</p>";  
                     print   "           <p class='li-viewcount' >View count: $numVisits</p>"; // change this variable to correctly add in view count! 
                     print   '       </div>';
                     print   '   </div>'; // end of .li-container
