@@ -70,14 +70,8 @@ print   '   </div>';
 print   '       <div id="deleteModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="delete-bookmark" action="action-deletebookmark.php" method="POST">';
-<<<<<<< HEAD
-//print   '               <span class="close">&times;</span>';
-print   '                   <label class="text-label" for="bookmarkID">Enter the ID of the bookmark you want to delete.</label>';
-print   '                   <input class="text-input" id="bookmarkID" name="bookmarkID" type="text" placeholder="e.g. 15">';
-=======
 print   '                   <label class="text-label" for="bookID">Enter the ID of the bookmark you want to delete.</label>';
 print   '                   <input class="text-input" id="bookID" name="bookID" type="text" placeholder="e.g. 15">';
->>>>>>> 4a4c285abf830e4bb4b7d5f4f9d0ecdaef3784ba
 print   '                   <div class="button-holder">';
 print   '                       <span class="close close-words">Close window</span>';
 print   '                       <input id="submit-btn" type="submit" value="Delete Bookmark">';
