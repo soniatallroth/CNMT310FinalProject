@@ -9,7 +9,7 @@ require_once(__DIR__ . "/../yoyoconfig.php");
 $url = "https://cnmt310.classconvo.com/bookmarks/";
 $client = new WebServiceClient($url);
 
-$page = new Page("Bookmarks");
+$page = new Page("Stash - Bookmarks");
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) { 
     $_SESSION['errors'][] = "Please input a username and password to access the bookmarks page.";
@@ -19,6 +19,7 @@ $books = new Bookmarks();
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
+$page->addHeadElement('<link rel="icon" type="image/x-icon" href="images/favicon.ico">');
 $page->addHeadElement('<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>');
 $page->addHeadElement('<script src="https://kit.fontawesome.com/c288a0b638.js" crossorigin="anonymous"></script>');
 $page->addHeadElement('<script src="js/ajaxAddVisit.js"></script>');

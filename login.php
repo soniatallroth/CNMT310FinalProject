@@ -3,7 +3,7 @@
 require_once("autoload.php");
 require_once("classes/Page.class.php");
 
-$page = new Page("Login Portal");
+$page = new Page("Stash - Login Portal");
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) { 
     die(header("Location:" . BOOKMARKS)); 
@@ -11,6 +11,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
+$page->addHeadElement('<link rel="icon" type="image/x-icon" href="images/favicon.ico">');
     
 print $page->getTopSection();
 

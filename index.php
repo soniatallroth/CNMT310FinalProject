@@ -3,11 +3,11 @@
 require_once("autoload.php");
 require_once("classes/Page.class.php");
 
-$page = new Page("Home Page");
+$page = new Page("Stash - Home");
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
-
+$page->addHeadElement('<link rel="icon" type="image/x-icon" href="images/favicon.ico">');
 
 print $page->getTopSection();
 print   '   <!-- Navigation -->';
