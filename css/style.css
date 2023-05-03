@@ -216,6 +216,13 @@ input[type="submit"]:hover {
 }
 
 /* BOOKMARK PAGE */
+#errormsg {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    color: crimson;
+}
 .bookmark-heading {
     max-width: 1000px;
     display: flex;
@@ -235,7 +242,6 @@ input[type="submit"]:hover {
 .button:hover {
     background-color: #0f533f;
 }
-
 /* tabs */
 .tabs-wrapper {
     display: block;

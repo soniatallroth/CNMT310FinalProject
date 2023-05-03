@@ -21,6 +21,7 @@ $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
 $page->addHeadElement('<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>');
 $page->addHeadElement('<script src="https://kit.fontawesome.com/c288a0b638.js" crossorigin="anonymous"></script>');
+$page->addHeadElement('<script src="js/ajaxAddVisit.js"></script>');
 
 print $page->getTopSection();
 print   '   <!-- Navigation (for bookmarks page)-->';
@@ -35,6 +36,12 @@ print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
 print   '   <main class="bookmarks-main">';
+if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+    foreach($_SESSION['errors'] as $field => $message) {
+        print '<span class="error" id="errormsg">' . $message . '</span><br>';
+    }
+    $_SESSION['errors'] = array();
+}
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
 print   '       <button class="button" id="addBtn">Add a bookmark</button>';
