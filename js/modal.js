@@ -47,26 +47,3 @@ window.onclick = function(event) {
       deleteModal.style.display = "none";
   }
 }
-
-$(document).ready(function(){
-  $(".delete-link").on("click", function(){
-    alert("clicked");
-    var bookmarkID = $(this).attr("id");
-    $.ajax({
-      url: "action-deletebookmark.php",
-      type: "POST",
-      data: 
-      {
-        bookmarkID: bookmarkID
-      },
-      success: function(response) {
-        //$("body").html(response);
-        var bookmarkID = response;
-        $(".bookmark-container").find("[data-id='" + bookmarkID + "']").remove();
-      },
-      error: function(response) {
-        alert("Error");
-      }
-    });
-  });
-});

@@ -1,4 +1,6 @@
 <?php
+require_once("autoload.php");
+require_once("WebServiceClient.php");
 
 class Bookmarks {
 
@@ -24,14 +26,14 @@ class Bookmarks {
         $this->_id = $id;
         return $this;
     }
-    public function setBookmakID($bookmarkId = 0) {
+    public function setBookmarkID($bookmarkId = 0) {
         $this->_bookID = $bookmarkId;
         return $this;
     }
 
     public function getBookmarks($id, $client) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
-
+    
         $data = array("user_id" => $id);
         $action = "getbookmarks";
         $fields = array(
@@ -41,16 +43,16 @@ class Bookmarks {
             "action" => $action
         );
         $client->setPostFields($fields);
-
+    
         $returnValue = $client->send();
         $obj = json_decode($returnValue);
-
+    
         if (!property_exists($obj, "result")) {
             die(print("Error, no result property"));
         }
-
+    
         $this->urlList = $obj->data;
-
+    
         if ($obj->result == "Success") {
             if (!is_array($this->urlList) || count($this->urlList) <= 0) {
                 print '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
@@ -59,23 +61,50 @@ class Bookmarks {
                     $href = $bookmark->url;
                     $title = $bookmark->displayname;
                     $bookmarkID = $bookmark->bookmark_id;
+                    $numVisits = $bookmark->visits;
                     print   '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
                     print   '   <div class="li-container">';
                     print   '       <div class="li-left">';
-                    print   "           <li><a class='li-title' href='$href' target='_blank'>$title</a></li>";
+                    print   "           <li><a class='li-title' href='$href' onclick=\"addVisit()\" target='_blank'>$title</a></li>";
                     print   "           <p class='li-link'>$href</p>";
                     print   '       </div>';
                     print   '       <div class="li-right">';
                     print   "           <p class'li-bookmarkID' >ID: $bookmarkID</p>";  
-                    print   "           <p class='li-viewcount' >View count: $id</p>"; // change this variable to correctly add in view count! 
+                    print   "           <p class='li-viewcount' >View count: $numVisits</p>"; // change this variable to correctly add in view count! 
                     print   '       </div>';
                     print   '   </div>'; // end of .li-container
-                    print   '   <a class="delete-link xmark" href="#"><i class="fa-solid fa-xmark"></i></a>';
+                    print   '   <a class="delete-link xmark" href="#" data-user-id="' . $_SESSION['userid'] . '" data-bookmark-id="' . $bookmarkID . '"><i class="fa-solid fa-xmark"></i></a>';
                     print   '</div>';
                 }
             }
+            // Add event listener to delete links
+            print '<script>
+                $(document).ready(function() {
+                    $(".delete-link").click(function(e) {
+                        e.preventDefault();
+                        var bookmarkId = $(this).data("bookmark-id");
+                        var user = $(this).data("user-id");
+                        $.ajax({
+                            url: "action-deletebookmark.php",
+                            type: "POST",
+                            data: 
+                            {
+                                bookmark_id: bookmarkId,
+                                user_id: user
+                            },
+                            success: function(result) {
+                                // Reload page to update list of bookmarks
+                                location.reload();
+                            },
+                            error: function() {
+                                alert("Error deleting bookmark!");
+                            }
+                        });
+                    });
+                });
+            </script>';
+            }
         }
-    }
     public function addBookmark($id, $client) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
 
@@ -118,10 +147,10 @@ class Bookmarks {
     public function deleteBookmark($id, $client) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
 
-        $bookID = $_POST['bookID'];
+        $bookmarkID = $_POST['bookmarkID'];
         $id = $_SESSION['userid'];
 
-        $data = array("bookmark_id" => $bookID, "user_id" => $id);
+        $data = array("bookmark_id" => $bookmarkID, "user_id" => $id);
         $action = "deletebookmark";
         $fields = array("apikey" => APIKEY,
                     "apihash" => APIHASH,
@@ -194,6 +223,39 @@ class Bookmarks {
 			print '});';
 			print '</script>';
 	}
+
+    function addVisit($id, $client)
+    {
+        require_once(__DIR__ . "/../../yoyoconfig.php");
+
+        $bookmarkID = $_POST['bookmarkID'];
+        $id = $_SESSION['userid'];
+
+        $data = array("bookmark_id" => $bookmarkID, "user_id" => $id);
+        $action = "addvisit";
+        $fields = array(
+            "apikey" => APIKEY,
+            "apihash" => APIHASH,
+            "data" => $data,
+            "action" => $action
+        );
+        $client->setPostFields($fields);
+
+        $returnValue = $client->send();
+        $obj = json_decode($returnValue);
+        if(!property_exists($obj, "result")) {
+            die(print("Error, no result property"));
+        }
+
+        if ($obj->result == 'Success') {
+            $_SESSION['results'][] = "A visit was successfully added!";
+        } else {
+            $_SESSION['results'][] = "Sorry! There was an error adding a visit to this bookmark.";
+        }
+
+        return $_SESSION['results'];
+    }
+
 }
 
 ?>
