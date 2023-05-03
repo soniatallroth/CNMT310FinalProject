@@ -22,6 +22,7 @@ $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
 $page->addHeadElement('<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>');
 $page->addHeadElement('<script src="https://kit.fontawesome.com/c288a0b638.js" crossorigin="anonymous"></script>');
 $page->addHeadElement('<script src="js/ajaxAddVisit.js"></script>');
+$page->addHeadElement('<script src="js/ajaxDeleteBookmark.js"></script>');
 
 print $page->getTopSection();
 print   '   <!-- Navigation (for bookmarks page)-->';

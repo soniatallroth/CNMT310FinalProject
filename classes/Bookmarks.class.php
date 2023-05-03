@@ -68,8 +68,7 @@ class Bookmarks {
                     print   "           <li><a class='li-title' href='$href' data-bookmark-id=" . $bookmarkID . " target='_blank'>$title</a></li>";
                     print   "           <p class='li-link'>$href</p>";
                     print   '       </div>';
-                    print   '       <div class="li-right">';
-                    //print   "           <p class'li-bookmarkID' >ID: $bookmarkID</p>";  
+                    print   '       <div class="li-right">'; 
                     print   "           <p class='li-viewcount' >View count: $numVisits</p>"; // change this variable to correctly add in view count! 
                     print   '       </div>';
                     print   '   </div>'; // end of .li-container
@@ -77,31 +76,6 @@ class Bookmarks {
                     print   '</div>';
                 }
             }
-            // Add event listener to delete links
-            print '<script>
-                $(document).ready(function() {
-                    $(".delete-link").click(function(e) {
-                        var bookmarkId = $(this).data("bookmark-id");
-                        var user = $(this).data("user-id");
-                        $.ajax({
-                            url: "action-deletebookmark.php",
-                            type: "POST",
-                            data: 
-                            {
-                                bookmark_id: bookmarkId,
-                                user_id: user
-                            },
-                            success: function(result) {
-                                // Reload page to update list of bookmarks
-                                location.reload();
-                            },
-                            error: function() {
-                                alert("Error deleting bookmark!");
-                            }
-                        });
-                    });
-                });
-            </script>';
             }
         }
     public function addBookmark($id, $client) {
