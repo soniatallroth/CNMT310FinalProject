@@ -65,11 +65,11 @@ class Bookmarks {
                     print   '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
                     print   '   <div class="li-container">';
                     print   '       <div class="li-left">';
-                    print   "           <li><a class='li-title' href='$href' onclick=\"addVisit()\" target='_blank'>$title</a></li>";
+                    print   "           <li><a class='li-title' href='$href' data-bookmark-id=" . $bookmarkID . " target='_blank'>$title</a></li>";
                     print   "           <p class='li-link'>$href</p>";
                     print   '       </div>';
                     print   '       <div class="li-right">';
-                    print   "           <p class'li-bookmarkID' >ID: $bookmarkID</p>";  
+                    //print   "           <p class'li-bookmarkID' >ID: $bookmarkID</p>";  
                     print   "           <p class='li-viewcount' >View count: $numVisits</p>"; // change this variable to correctly add in view count! 
                     print   '       </div>';
                     print   '   </div>'; // end of .li-container
@@ -81,7 +81,6 @@ class Bookmarks {
             print '<script>
                 $(document).ready(function() {
                     $(".delete-link").click(function(e) {
-                        e.preventDefault();
                         var bookmarkId = $(this).data("bookmark-id");
                         var user = $(this).data("user-id");
                         $.ajax({
@@ -144,11 +143,8 @@ class Bookmarks {
             die(header("Location: " . BOOKMARKS));
         }
     }
-    public function deleteBookmark($id, $client) {
+    public function deleteBookmark($id, $bookmarkID, $client) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
-
-        $bookmarkID = $_POST['bookmarkID'];
-        $id = $_SESSION['userid'];
 
         $data = array("bookmark_id" => $bookmarkID, "user_id" => $id);
         $action = "deletebookmark";
@@ -173,12 +169,8 @@ class Bookmarks {
         //print $obj->result;
         //all checks above are passed, so below code *should* be safe to run
 
-        if($obj->result == "Success") {
-        die(header("Location: " . BOOKMARKS));
-        }
-        else {
-        $_SESSION['errors'][] = "Sorry! There was an error deleting your bookmark.";
-        die(header("Location: " . BOOKMARKS));
+        if($obj->result != "Success") {
+            $_SESSION['errors'][] = "Sorry! There was an error deleting your bookmark.";
         }
     }
 	
@@ -224,12 +216,9 @@ class Bookmarks {
 			print '</script>';
 	}
 
-    function addVisit($id, $client)
+    function addVisit($id, $bookmarkID, $client)
     {
         require_once(__DIR__ . "/../../yoyoconfig.php");
-
-        $bookmarkID = $_POST['bookmarkID'];
-        $id = $_SESSION['userid'];
 
         $data = array("bookmark_id" => $bookmarkID, "user_id" => $id);
         $action = "addvisit";

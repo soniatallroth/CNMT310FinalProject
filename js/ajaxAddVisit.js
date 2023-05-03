@@ -1,13 +1,14 @@
-function addVisit() {
-    $(document).ready(function() {
-        $("a.li-title").on("click", function(){
-            var bookmarkID = $(this).attr("id");
+$(document).ready(function() {
+        $(".li-title").on("click", function(e){
+            //alert("clicked");
+            //e.preventDefault();
+            var bookmarkID = $(this).data("bookmark-id");
             $.ajax({
                 url: 'action-addvisit.php',
                 type: 'POST',
-                data: {bookmarkID: bookmarkID},
+                data: {bookmark_id: bookmarkID},
                 success: function(response) {
-                    $("body").html(response);
+                    location.reload();
                 },
                 error: function(error){
                     alert(error);
@@ -15,4 +16,3 @@ function addVisit() {
             });
         });
     });
-}

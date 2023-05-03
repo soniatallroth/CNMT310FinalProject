@@ -17,13 +17,14 @@ if(count($_SESSION['errors']) > 0){
 $books = new Bookmarks();
 
 $id = $_SESSION['userid'];
+$bookmarkID = $_POST['bookmark_id'];
 
-$returnValue = $books ->addVisit($id, $client);
+$returnValue = $books ->addVisit($id, $bookmarkID, $client);
 //var_dump($returnValue);
 
-if(isset($_SESSION['results'])){
-    $_SESSION['results'][] = $returnValue;
-    die(header("Location:" . BOOKMARKS));
-}
+// if(isset($_SESSION['results'])){
+//     $_SESSION['results'][] = $returnValue;
+//     die(header("Location:" . BOOKMARKS));
+// }
 
 ?>

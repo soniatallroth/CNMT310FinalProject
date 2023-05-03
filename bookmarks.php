@@ -45,7 +45,6 @@ if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSIO
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
 print   '       <button class="button" id="addBtn">Add a bookmark</button>';
-print   '       <button class="button" id="deleteBtn">Delete a bookmark</button>';
 print   '       <div id="addModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
