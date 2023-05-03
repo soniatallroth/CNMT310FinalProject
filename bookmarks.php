@@ -42,28 +42,32 @@ print   '       <button class="button" id="deleteBtn">Delete a bookmark</button>
 print   '       <div id="addModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
-//print   '                   <span class="close">&times;</span>';
 print   '                   <label class="text-label" for="url">Add the link for your bookmark</label>';
 print   '                   <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
 print   '                   <label class="text-label" for="displayname">Name your bookmark</label>';
 print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
+print   '                   <div class="radio-button-container">';
+print   '                       <input type="radio" id="public" name="sharingBookmarks" value="public">'; // public radio button
+print   '                       <label for="public">Public</label>'; 
+print   '                       <input type="radio" id="private" name="sharingBookmarks" value="private">'; // private radio button
+print   '                       <label for="private">Private</label>';
+print   '                   </div>';
 print   '                   <div class="button-holder">';
-print   '                       <input id="submit-btn" type="submit" value="Add your bookmark">';
 print   '                       <span class="close close-words">Close window</span>';
+print   '                       <input id="submit-btn" type="submit" value="Add your bookmark">';
 print   '                   </div>';
 print   '                </form>';
-print   '           </div>';
+print   '           </div>'; // end of modal-content
 print   '       </div>'; 
 print   '   </div>'; 
 print   '       <div id="deleteModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="delete-bookmark" action="action-deletebookmark.php" method="POST">';
-//print   '               <span class="close">&times;</span>';
 print   '                   <label class="text-label" for="bookID">Enter the ID of the bookmark you want to delete.</label>';
 print   '                   <input class="text-input" id="bookID" name="bookID" type="text" placeholder="e.g. 15">';
 print   '                   <div class="button-holder">';
-print   '                       <input id="submit-btn" type="submit" value="Delete Bookmark">';
 print   '                       <span class="close close-words">Close window</span>';
+print   '                       <input id="submit-btn" type="submit" value="Delete Bookmark">';
 print   '                   </div>';
 print   '               </form>';
 print   '           </div>';
@@ -110,6 +114,9 @@ print   '               </div>';
 print   '           </div>'; // end of popular tab
 print   '       </div>'; // end of tabs
 print   '   </div>'; // end of tabs-wrapper
+
+
+
 print   '   </main>';
 
 print $page->addBottomElement("<script src='js/modal.js'></script>");
