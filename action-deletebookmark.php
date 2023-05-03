@@ -15,14 +15,15 @@ $books = new Bookmarks();
 
 // checks to make sure both form fields were set, displays error message if not 
 // foreach($required as $element) {
-//   if(!isset($_POST[$element]) || empty($_POST[$element])){
-//     $_SESSION['errors'][] = "Please enter a bookmark ID.";
+    //   if(!isset($_POST[$element]) || empty($_POST[$element])){
+        //     $_SESSION['errors'][] = "Please enter a bookmark ID.";
 //     die(header("location: " . BOOKMARKS));
 //   }
 // }
 
 $id = $_SESSION['userid'];
+$bookmarkID = $_POST['bookmark_id'];
 
-$books->deleteBookmark($id, $client);
+$books->deleteBookmark($id, $bookmarkID, $client);
 
 ?>

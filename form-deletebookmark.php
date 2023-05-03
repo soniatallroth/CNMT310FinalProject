@@ -25,8 +25,8 @@ if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSIO
     $_SESSION['errors'] = array();
 }
 
-print '                 <label class="text-label" for="bookID">Enter the ID of the bookmark you want to delete.</label>';
-print '                 <input class="text-input" id="bookID" name="bookID" type="text" placeholder="e.g. 15">';
+print '                 <label class="text-label" for="bookmarkID">Enter the ID of the bookmark you want to delete.</label>';
+print '                 <input class="text-input" id="bookmarkID" name="bookmarkID" type="text" placeholder="e.g. 15">';
 print '                 <div class="button-holder">';
 print '                     <input id="submit-btn" type="submit" value="Delete Bookmark">';
 print '                 </div>';
