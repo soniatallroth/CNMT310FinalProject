@@ -22,13 +22,7 @@ foreach($required as $element) {
   }
 }
 
-// checks if username or password field is empty, displays error message if so 
-foreach($required as $element) {
-  if(empty($_POST[$element])) {
-    $_SESSION['errors'][] = "Please input a " .ucfirst($element);
-    die(header("location: " . LOGINFORM));
-  }
-}
+// field checking (empty fields) handled by JS validation
 
 $username = strtolower($_POST['username']);
 $password = $_POST['password'];
@@ -62,6 +56,6 @@ if($obj->result == "Success") {
     die(header("Location: " . BOOKMARKS));
 }
 else {
-    $_SESSION['errors'][] = $obj->data->message;
+    $_SESSION['errors'][] = "User was not found or password incorrect.";
     die(header("Location: " . LOGINFORM));
 }
