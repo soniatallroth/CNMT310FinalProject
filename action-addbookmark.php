@@ -20,8 +20,8 @@ foreach($required as $element) {
   }
 }
 
-if(!str_contains($_POST['url'], 'https://www.')) {
-    $_SESSION['errors'][] = "Please enter a valid URL that contains 'https://www.'";
+if(!str_contains($_POST['url'], 'https://')) {
+    $_SESSION['errors'][] = "Please enter a valid URL that contains 'https://'";
     die(header("location: " . BOOKMARKS));
 }
 
