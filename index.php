@@ -3,7 +3,7 @@
 require_once("autoload.php");
 require_once("classes/Page.class.php");
 
-$page = new Page("Stash - Home");
+$page = new Page("stash - Home");
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
@@ -53,7 +53,7 @@ print   '   <!--Footer-->';
 print   '</div>';
 // print   '</main>';
 print   '   <div class="footer">'; 
-print   '       <p>Copyright © 2023</p>';
+print   '       <p>Copyright © 2023 stash</p>';
 print   '   </div>'; 
 
 print $page->getBottomSection();

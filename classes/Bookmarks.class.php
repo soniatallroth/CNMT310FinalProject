@@ -83,9 +83,10 @@ class Bookmarks {
 
         $link = strtolower($_POST['url']);
         $linkLabel = $_POST['displayname'];
+        $shared = $_POST['sharingBookmarks']; //this defaults to true (public), even if not selected
         $id = $_SESSION['userid'];
 
-        $data = array("url" => $link, "displayname" => $linkLabel, "user_id" => $id);
+        $data = array("url" => $link, "displayname" => $linkLabel, "user_id" => $id, "shared" => $shared);
         $action = "addbookmark";
         $fields = array("apikey" => APIKEY,
                         "apihash" => APIHASH,

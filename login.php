@@ -3,7 +3,7 @@
 require_once("autoload.php");
 require_once("classes/Page.class.php");
 
-$page = new Page("Stash - Login Portal");
+$page = new Page("stash - Login Portal");
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) { 
     die(header("Location:" . BOOKMARKS)); 
@@ -25,7 +25,7 @@ print   '<div class="login-container">';
 print   '   <div class="login">';
 print   '             <div class="welcome-text">';
 print   '                 <h2>Welcome!</h2>';
-print   '                 <p>Please enter your details.</p>';
+print   '                 <p>Please enter your credentials.</p>';
 print   '            </div>';
 print   '            <form id="form_login" action="action-login.php" method="POST">';
 print '<span id="errorMsg" class="error">';
@@ -39,9 +39,9 @@ if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSIO
 
 print '</span>';
 print   '                   <div id="form_login_feedback">';
-print   '                        <label class="text-label" for="username">Your username</label><br>';
+print   '                        <label class="text-label" for="username">Your username:</label><br>';
 print   '                        <input class="text-input" id="username" name="username" type="text" placeholder="eg. johnsmith">';
-print   '                        <label class="text-label" for="password">Your password</label><br>';
+print   '                        <label class="text-label" for="password">Your password:</label><br>';
 print   '                        <input class="text-input" id="password" name="password" type="password" placeholder="********">';
 print   '                        <div class="button-holder">';
 print   '                            <input id="submit-btn" type="submit" value="Log In">';

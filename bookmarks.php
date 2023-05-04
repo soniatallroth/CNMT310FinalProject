@@ -9,7 +9,7 @@ require_once(__DIR__ . "/../yoyoconfig.php");
 $url = "https://cnmt310.classconvo.com/bookmarks/";
 $client = new WebServiceClient($url);
 
-$page = new Page("Stash - Bookmarks");
+$page = new Page("stash - Bookmarks");
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) { 
     $_SESSION['errors'][] = "Please input a username and password to access the bookmarks page.";
