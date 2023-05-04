@@ -10,16 +10,21 @@ $client = new WebServiceClient($url);
 // Default is to POST. If you need to change to a GET, here's how:
 //$client->setMethod("GET");
 
+if(!isset($_SESSION['loggedIn']) || !isset($_POST['bookmark_id'])){
+    $_SESSION['errors'][] = "Please click on the X next to a bookmark to delete it.";
+    die(header("location: " . BOOKMARKS));
+}
+
 $books = new Bookmarks();
-//$required = array('bookID');
+//$required = array('bookmark_id', 'userid');
 
 // checks to make sure both form fields were set, displays error message if not 
-// foreach($required as $element) {
-    //   if(!isset($_POST[$element]) || empty($_POST[$element])){
-        //     $_SESSION['errors'][] = "Please enter a bookmark ID.";
-//     die(header("location: " . BOOKMARKS));
-//   }
-// }
+//foreach($required as $element) {
+    // if(!isset($_POST[$element]) || empty($_POST[$element])){
+    //     $_SESSION['errors'][] = "Please enter a bookmark ID.";
+    //     die(header("location: " . BOOKMARKS));
+    // }
+//}
 
 $id = $_SESSION['userid'];
 $bookmarkID = $_POST['bookmark_id'];
