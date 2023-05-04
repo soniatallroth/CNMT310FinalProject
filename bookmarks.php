@@ -124,8 +124,6 @@ print   '           </div>'; // end of popular tab
 print   '       </div>'; // end of tabs
 print   '   </div>'; // end of tabs-wrapper
 
-
-
 print   '   </main>';
 
 print $page->addBottomElement("<script src='js/modal.js'></script>");

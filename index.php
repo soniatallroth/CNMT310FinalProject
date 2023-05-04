@@ -28,7 +28,6 @@ else {
 print   '       </div>';
 print   '   </header>';
 print   '<!--Content-->';
-// print   '<main>';
 print   '<div class="main-container">';
 print   '   <div class="main-left">';
 print   '       <p class="heading"><span>stash</span> your bookmarks with us.</p>';
@@ -49,9 +48,7 @@ print   '           <li>View <span>popular bookmarks</span> from users across th
 print   '       </ul>';
 print   '   </div>';
 print   '   <!--Footer-->';
-
 print   '</div>';
-// print   '</main>';
 print   '   <div class="footer">'; 
 print   '       <p>Copyright © 2023 stash</p>';
 print   '   </div>'; 
