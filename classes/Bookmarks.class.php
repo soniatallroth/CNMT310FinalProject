@@ -31,7 +31,7 @@ class Bookmarks {
         return $this;
     }
 
-    public function getBookmarks($id, $client) {
+    public function getBookmarks($id, $client, $tab = 'main') {
         require_once(__DIR__ . "/../../yoyoconfig.php");
     
         $data = array("user_id" => $id);
@@ -62,18 +62,21 @@ class Bookmarks {
                     $title = $bookmark->displayname;
                     $bookmarkID = $bookmark->bookmark_id;
                     $numVisits = $bookmark->visits;
-                    print   '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
-                    print   '   <div class="li-container">';
-                    print   '       <div class="li-left">';
-                    print   "           <li><a class='li-title' href='$href' data-bookmark-id=" . $bookmarkID . " target='_blank'>$title</a></li>";
-                    print   "           <p class='li-link'>$href</p>";
-                    print   '       </div>';
-                    print   '       <div class="li-right">'; 
-                    print   "           <p class='li-viewcount' >View count: $numVisits</p>";  
-                    print   '       </div>';
-                    print   '   </div>'; // end of .li-container
-                    print   '   <a class="delete-link xmark" href="#" data-user-id="' . $_SESSION['userid'] . '" data-bookmark-id="' . $bookmarkID . '"><i class="fa-solid fa-xmark"></i></a>';
-                    print   '</div>';
+                    if($tab == 'main' || ($tab == 'popular' && $numVisits >= 10)) {
+
+                        print   '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
+                        print   '   <div class="li-container">';
+                        print   '       <div class="li-left">';
+                        print   "           <li><a class='li-title' href='$href' data-bookmark-id=" . $bookmarkID . " target='_blank'>$title</a></li>";
+                        print   "           <p class='li-link'>$href</p>";
+                        print   '       </div>';
+                        print   '       <div class="li-right">'; 
+                        print   "           <p class='li-viewcount' >View count: $numVisits</p>";  
+                        print   '       </div>';
+                        print   '   </div>'; // end of .li-container
+                        print   '   <a class="delete-link xmark" href="#" data-user-id="' . $_SESSION['userid'] . '" data-bookmark-id="' . $bookmarkID . '"><i class="fa-solid fa-xmark"></i></a>';
+                        print   '</div>';
+                    }
                 }
             }
             }

@@ -100,7 +100,7 @@ if(!isset($_SESSION['userid'])) {
 
 $id = $_SESSION['userid'];
 
-$books->getBookmarks($id, $client);
+$books->getBookmarks($id, $client, 'main');
 $books->autocomplete();
 
 print   '                   </ul>';
@@ -116,7 +116,8 @@ print   '                       <a class="button" href="#">Search</a>';
 print   '                   </div>';
 print   '                   <ul class="list-group bookmark-container"><br>';
 
-// POPULAR BOOKMARK TAB STUFF GOES HERE!
+$books->getBookmarks($id, $client, 'popular');
+$books->autocomplete();
 
 print   '                   </ul>';
 print   '               </div>';
