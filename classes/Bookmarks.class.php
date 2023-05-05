@@ -63,7 +63,6 @@ class Bookmarks {
                     $bookmarkID = $bookmark->bookmark_id;
                     $numVisits = $bookmark->visits;
                     if($tab == 'main' || ($tab == 'popular' && $numVisits >= 10)) {
-
                         print   '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
                         print   '   <div class="li-container">';
                         print   '       <div class="li-left">';
@@ -152,13 +151,15 @@ class Bookmarks {
         }
     }
 	
-	public function autocomplete() {
-		$ac = array();
-		foreach ($this->urlList as $key => $val) {
-		  $ac[$key]['id'] = $val->bookmark_id;
-		  $ac[$key]['label'] = $val->displayname;
-		  $ac[$key]['value'] = $val->url;
-}
+	public function autocomplete($tab) {
+        $ac = array();
+        foreach ($this->urlList as $key => $val) {
+            if($tab == 'main' || ($tab == 'popular' && $val->visits >= 10)) {
+                $ac[$key]['id'] = $val->bookmark_id;
+                $ac[$key]['label'] = $val->displayname;
+                $ac[$key]['value'] = $val->url;
+            }
+        }
 			print "<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css\">";
 			print "<script src=\"https://code.jquery.com/jquery-3.6.0.js\"></script>";
 			print "<script src=\"https://code.jquery.com/ui/1.13.2/jquery-ui.js\"></script>";
@@ -187,7 +188,7 @@ class Bookmarks {
 			print 'var srcdata = ' . json_encode($ac) . ";\n";
 			print '$("#search").on("keyup", function() {';
 			print 'var value = $(this).val().toLowerCase();';
-			print '$(".list-group-item").filter(function() { $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);';
+			print '$(".list-group-item-action").filter(function() { $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);';
 			print '});';
 			print '});';
 			print '});';

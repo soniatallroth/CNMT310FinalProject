@@ -101,7 +101,7 @@ if(!isset($_SESSION['userid'])) {
 $id = $_SESSION['userid'];
 
 $books->getBookmarks($id, $client, 'main');
-$books->autocomplete();
+$books->autocomplete('main');
 
 print   '                   </ul>';
 print   '               </div>';
@@ -117,7 +117,7 @@ print   '                   </div>';
 print   '                   <ul class="list-group bookmark-container"><br>';
 
 $books->getBookmarks($id, $client, 'popular');
-$books->autocomplete();
+$books->autocomplete('popular');
 
 print   '                   </ul>';
 print   '               </div>';
