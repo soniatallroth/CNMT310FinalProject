@@ -118,14 +118,10 @@ class Bookmarks {
         //print $obj->result;
         //all checks above are passed, so below code *should* be safe to run
 
-        if($obj->result == "Success") {
-            $sessManager['results'][] = "Your bookmark was successfully added!";
-            //die(header("Location: " . BOOKMARKS));
-        }
-        else {
+        if($obj->result !== "Success") {
             $sessManager['results'][] = "Sorry! There was an error adding your bookmark.";
-            //die(header("Location: " . BOOKMARKS));
         }
+
         return $sessManager['results'];
     }
     public function deleteBookmark($client, $sessManager) {
@@ -154,13 +150,8 @@ class Bookmarks {
         //print $obj->result;
         //all checks above are passed, so below code *should* be safe to run
 
-        if($obj->result == "Success") {
-            $sessManager['results'][] = "Your bookmark was successfully added!";
-            //die(header("Location: " . BOOKMARKS));
-        }
-        else {
+        if($obj->result !== "Success") {
             $sessManager['results'][] = "Sorry! There was an error adding your bookmark.";
-            //die(header("Location: " . BOOKMARKS));
         }
 
         return $sessManager['results'];

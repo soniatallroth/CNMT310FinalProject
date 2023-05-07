@@ -7,8 +7,6 @@ require_once(__DIR__ . "/../yoyoconfig.php");
 $url = "https://cnmt310.classconvo.com/bookmarks/";
 $client = new WebServiceClient($url);
 
-$required = array('bookmark_id');
-
 if(!isset($_SESSION['loggedIn']) || !isset($_SESSION['info'])) {
     $_SESSION['results'][] = "You must be logged in to perform this action.";
     die(header("Location:" . LOGINFORM));
