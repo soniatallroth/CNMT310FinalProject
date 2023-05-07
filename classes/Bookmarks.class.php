@@ -7,7 +7,8 @@ class Bookmarks {
     protected $_displayName;
     protected $_url;
     protected $_id;
-    protected $_bookID;
+    protected $_bookmarkID;
+    protected $_sharedStatus;
 	protected $urlList;
     
     function __construct() {}
@@ -26,8 +27,13 @@ class Bookmarks {
         $this->_id = $id;
         return $this;
     }
-    public function setBookmarkID($bookmarkId = 0) {
-        $this->_bookID = $bookmarkId;
+    public function setBookmarkID($bookmarkID = 0) {
+        $this->_bookmarkID = $bookmarkID;
+        return $this;
+    }
+
+    public function setSharedStatus($shared = true) {
+        $this->_sharedStatus = $shared;
         return $this;
     }
 
@@ -80,15 +86,15 @@ class Bookmarks {
             }
             }
         }
-    public function addBookmark($id, $client) {
+    public function addBookmark($client, $sessManager) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
 
-        $link = strtolower($_POST['url']);
-        $linkLabel = $_POST['displayname'];
-        $shared = $_POST['sharingBookmarks']; //this defaults to true (public), even if not selected
-        $id = $_SESSION['info']->id;
+        //$link = strtolower($_POST['url']);
+        //$linkLabel = $_POST['displayname'];
+        //$shared = $_POST['sharingBookmarks']; //this defaults to true (public), even if not selected
+        //$id = $_SESSION['info']->id;
 
-        $data = array("url" => $link, "displayname" => $linkLabel, "user_id" => $id, "shared" => $shared);
+        $data = array("url" => $this->_url, "displayname" => $this->_displayName, "user_id" => $this->_id, "shared" => $this->_sharedStatus);
         $action = "addbookmark";
         $fields = array("apikey" => APIKEY,
                         "apihash" => APIHASH,
@@ -113,17 +119,19 @@ class Bookmarks {
         //all checks above are passed, so below code *should* be safe to run
 
         if($obj->result == "Success") {
-            die(header("Location: " . BOOKMARKS));
+            $sessManager['results'][] = "Your bookmark was successfully added!";
+            //die(header("Location: " . BOOKMARKS));
         }
         else {
-            $_SESSION['results'][] = "Sorry! There was an error adding your bookmark.";
-            die(header("Location: " . BOOKMARKS));
+            $sessManager['results'][] = "Sorry! There was an error adding your bookmark.";
+            //die(header("Location: " . BOOKMARKS));
         }
+        return $sessManager['results'];
     }
-    public function deleteBookmark($id, $bookmarkID, $client) {
+    public function deleteBookmark($client, $sessManager) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
 
-        $data = array("bookmark_id" => $bookmarkID, "user_id" => $id);
+        $data = array("bookmark_id" => $this->_bookmarkID, "user_id" => $this->_id);
         $action = "deletebookmark";
         $fields = array("apikey" => APIKEY,
                     "apihash" => APIHASH,
@@ -146,11 +154,18 @@ class Bookmarks {
         //print $obj->result;
         //all checks above are passed, so below code *should* be safe to run
 
-        if($obj->result != "Success") {
-            $_SESSION['results'][] = "Sorry! There was an error deleting your bookmark.";
+        if($obj->result == "Success") {
+            $sessManager['results'][] = "Your bookmark was successfully added!";
+            //die(header("Location: " . BOOKMARKS));
         }
+        else {
+            $sessManager['results'][] = "Sorry! There was an error adding your bookmark.";
+            //die(header("Location: " . BOOKMARKS));
+        }
+
+        return $sessManager['results'];
     }
-	
+    
 	public function autocomplete($tab) {
         $ac = array();
         foreach ($this->urlList as $key => $val) {
@@ -195,11 +210,11 @@ class Bookmarks {
 			print '</script>';
 	}
 
-    function addVisit($id, $bookmarkID, $client)
+    function addVisit($client, $sessManager)
     {
         require_once(__DIR__ . "/../../yoyoconfig.php");
 
-        $data = array("bookmark_id" => $bookmarkID, "user_id" => $id);
+        $data = array("bookmark_id" => $this->_bookmarkID, "user_id" => $this->_id);
         $action = "addvisit";
         $fields = array(
             "apikey" => APIKEY,
@@ -215,16 +230,12 @@ class Bookmarks {
             die(print("Error, no result property"));
         }
 
-        if ($obj->result == 'Success') {
-            //$_SESSION['results'][] = "A visit was successfully added!";
-            die(header("Location: " . BOOKMARKS));
-        } else {
-            $_SESSION['results'][] = "Sorry! There was an error adding a visit to this bookmark.";
+        if ($obj->result !== 'Success') {
+            $sessManager['results'][] = "Sorry! There was an error adding a visit to this bookmark.";
         }
 
         return $_SESSION['results'];
     }
-
 }
 
 ?>

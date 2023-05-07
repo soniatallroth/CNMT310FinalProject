@@ -30,9 +30,13 @@ if(!str_contains($_POST['url'], 'https://')) {
   die(header("location: " . BOOKMARKS));
 }
 
-$books = new Bookmarks();
-$id = $_SESSION['info']->id;
+$books = Bookmarks::create()->setID($_SESSION['info']->id)->setURL($_POST['url'])->setDisplayName($_POST['displayname'])->setSharedStatus($_POST['sharingBookmarks']);
 
-$books->addBookmark($id, $client);
+$returnVal = $books->addBookmark($client, $_SESSION);
+
+if(isset($returnVal)){
+  //$_SESSION['results'][] = $returnValue;
+  die(header("Location: " . BOOKMARKS));
+}
 
 ?>

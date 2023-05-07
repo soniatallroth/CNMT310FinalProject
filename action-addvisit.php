@@ -7,7 +7,7 @@ require_once(__DIR__ . "/../yoyoconfig.php");
 $url = "https://cnmt310.classconvo.com/bookmarks/";
 $client = new WebServiceClient($url);
 
-$required = array('bookmarkID');
+$required = array('bookmark_id');
 
 if(!isset($_SESSION['loggedIn']) || !isset($_SESSION['info'])) {
     $_SESSION['results'][] = "You must be logged in to perform this action.";
@@ -19,12 +19,9 @@ if(count($_SESSION['results']) > 0){
     die(header("Location:" . BOOKMARKS));
 }
 
-$books = new Bookmarks();
+$books = Bookmarks::create()->setBookmarkID($_POST['bookmark_id'])->setID($_SESSION['info']->id);
 
-$id = $_SESSION['info']->id;
-$bookmarkID = $_POST['bookmark_id'];
-
-$returnValue = $books ->addVisit($id, $bookmarkID, $client);
+$returnVal = $books->addVisit($client, $_SESSION);
 
 //var_dump($returnValue);
 
@@ -32,5 +29,9 @@ $returnValue = $books ->addVisit($id, $bookmarkID, $client);
 //     $_SESSION['results'][] = $returnValue;
 //     die(header("Location:" . BOOKMARKS));
 // }
+
+if(isset($returnVal)){
+    die(header("Location: " . BOOKMARKS));
+}
 
 ?>
