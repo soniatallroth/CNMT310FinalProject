@@ -73,7 +73,7 @@ class Bookmarks {
                         print   "           <p class='li-viewcount' >View count: $numVisits</p>";  
                         print   '       </div>';
                         print   '   </div>'; // end of .li-container
-                        print   '   <a class="delete-link xmark" href="#" data-user-id="' . $_SESSION['userid'] . '" data-bookmark-id="' . $bookmarkID . '"><i class="fa-solid fa-xmark"></i></a>';
+                        print   '   <a class="delete-link xmark" href="#" data-user-id="' . $_SESSION['info']->id . '" data-bookmark-id="' . $bookmarkID . '"><i class="fa-solid fa-xmark"></i></a>';
                         print   '</div>';
                     }
                 }
@@ -86,7 +86,7 @@ class Bookmarks {
         $link = strtolower($_POST['url']);
         $linkLabel = $_POST['displayname'];
         $shared = $_POST['sharingBookmarks']; //this defaults to true (public), even if not selected
-        $id = $_SESSION['userid'];
+        $id = $_SESSION['info']->id;
 
         $data = array("url" => $link, "displayname" => $linkLabel, "user_id" => $id, "shared" => $shared);
         $action = "addbookmark";
@@ -116,7 +116,7 @@ class Bookmarks {
             die(header("Location: " . BOOKMARKS));
         }
         else {
-            $_SESSION['errors'][] = "Sorry! There was an error adding your bookmark.";
+            $_SESSION['results'][] = "Sorry! There was an error adding your bookmark.";
             die(header("Location: " . BOOKMARKS));
         }
     }
@@ -147,7 +147,7 @@ class Bookmarks {
         //all checks above are passed, so below code *should* be safe to run
 
         if($obj->result != "Success") {
-            $_SESSION['errors'][] = "Sorry! There was an error deleting your bookmark.";
+            $_SESSION['results'][] = "Sorry! There was an error deleting your bookmark.";
         }
     }
 	
@@ -216,7 +216,8 @@ class Bookmarks {
         }
 
         if ($obj->result == 'Success') {
-            $_SESSION['results'][] = "A visit was successfully added!";
+            //$_SESSION['results'][] = "A visit was successfully added!";
+            die(header("Location: " . BOOKMARKS));
         } else {
             $_SESSION['results'][] = "Sorry! There was an error adding a visit to this bookmark.";
         }

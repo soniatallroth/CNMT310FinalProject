@@ -12,7 +12,7 @@ $client = new WebServiceClient($url);
 $page = new Page("stash - Bookmarks");
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) { 
-    $_SESSION['errors'][] = "Please input a username and password to access the bookmarks page.";
+    $_SESSION['results'][] = "Please input a username and password to access the bookmarks page.";
     die(header("Location:" . LOGINFORM)); 
 }
 $books = new Bookmarks();
@@ -32,17 +32,17 @@ print   '       <div class="header-left">';
 print   '           <h1><a class="logo" href="index.php">stash</a></h1>';
 print   '       </div>';
 print   '       <div class="header-right">';
-print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['user'] .  ".</p>";
+print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['info']->name .  ".</p>";
 print   '           <a class="link login-link" href="logout.php">Log Out</a>';
 print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
 print   '   <main class="bookmarks-main">';
-if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
-    foreach($_SESSION['errors'] as $field => $message) {
+if(isset($_SESSION['results']) && is_array($_SESSION['results']) && count($_SESSION['results']) > 0) {
+    foreach($_SESSION['results'] as $field => $message) {
         print '<span class="error" id="errormsg">' . $message . '</span><br>';
     }
-    $_SESSION['errors'] = array();
+    $_SESSION['results'] = array();
 }
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
@@ -93,12 +93,12 @@ print   '                           <a class="button" href="#">Search</a>';
 print   '                       </div>';
 print   '                       <ul class="list-group bookmark-container"><br>';
 
-if(!isset($_SESSION['userid'])) {
-    $_SESSION['errors'][] = "Sorry! No User ID was found :(";
+if(!isset($_SESSION['info'])) {
+    $_SESSION['results'][] = "Sorry! No User ID was found :(";
     die(header("Location : " . BOOKMARKS)); 
 }
 
-$id = $_SESSION['userid'];
+$id = $_SESSION['info']->id;
 
 $books->getBookmarks($id, $client, 'main');
 $books->autocomplete('main');
@@ -130,4 +130,5 @@ print   '   </main>';
 print $page->addBottomElement("<script src='js/modal.js'></script>");
 
 print $page->getBottomSection();
+
 ?>

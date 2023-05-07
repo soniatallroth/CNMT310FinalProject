@@ -10,20 +10,26 @@ $client = new WebServiceClient($url);
 //$client->setMethod("GET");
 
 $_SESSION['loggedIn'] = false; 
-$_SESSION['errors'] = array();
-$_SESSION['userid'] = array();
+$_SESSION['results'] = array();
+$_SESSION['info'] = array();
+
 $required = array('username', 'password');
 
 // checks to make sure both form fields were set, displays error message if not 
 foreach($required as $element) {
   if(!isset($_POST[$element])){
-    $_SESSION['errors'][] = "Please input a username and/or password.";
+    $_SESSION['results'][] = "Please input a username and/or password.";
     die(header("location: " . LOGINFORM));
   }
 }
 
 // field checking (empty fields) handled by JS validation
 
+if(count($_SESSION['results']) > 0){
+  die(header("Location" . LOGINFORM)); 
+}
+
+//sanitize usernames because all lowercase internally
 $username = strtolower($_POST['username']);
 $password = $_POST['password'];
 
@@ -44,6 +50,7 @@ $obj = json_decode($returnValue);
 if(!property_exists($obj, "result")) {
     die(print("Error, no result property"));
 }
+
 //dumps JSON server response containing data + result
 //var_dump($returnValue);
 
@@ -51,11 +58,14 @@ if(!property_exists($obj, "result")) {
 
 if($obj->result == "Success") {
     $_SESSION['loggedIn'] = true;
-    $_SESSION['user'] = $_POST['username'];
-    $_SESSION['userid'] = $obj->data->id;
+    $_SESSION['info'] = $obj->data;
+    //$_SESSION['user'] = $_POST['username'];
+    //$_SESSION['userid'] = $obj->data->id;
     die(header("Location: " . BOOKMARKS));
 }
 else {
-    $_SESSION['errors'][] = "User was not found or password incorrect.";
+    $_SESSION['results'][] = "User was not found or password incorrect.";
     die(header("Location: " . LOGINFORM));
 }
+
+?>

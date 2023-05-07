@@ -30,11 +30,11 @@ print   '            </div>';
 print   '            <form id="form_login" action="action-login.php" method="POST">';
 print '<span id="errorMsg" class="error">';
 
-if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
-    foreach($_SESSION['errors'] as $field => $message) {
+if(isset($_SESSION['results']) && is_array($_SESSION['results']) && count($_SESSION['results']) > 0) {
+    foreach($_SESSION['results'] as $field => $message) {
         print $message;
     }
-    $_SESSION['errors'] = array();
+    $_SESSION['results'] = array();
 }
 
 print '</span>';
