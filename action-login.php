@@ -59,8 +59,6 @@ if(!property_exists($obj, "result")) {
 if($obj->result == "Success") {
     $_SESSION['loggedIn'] = true;
     $_SESSION['info'] = $obj->data;
-    //$_SESSION['user'] = $_POST['username'];
-    //$_SESSION['userid'] = $obj->data->id;
     die(header("Location: " . BOOKMARKS));
 }
 else {

@@ -25,11 +25,6 @@ $returnVal = $books->addVisit($client, $_SESSION);
 
 //var_dump($returnValue);
 
-// if(isset($_SESSION['results'])){
-//     $_SESSION['results'][] = $returnValue;
-//     die(header("Location:" . BOOKMARKS));
-// }
-
 if(isset($returnVal)){
     die(header("Location: " . BOOKMARKS));
 }

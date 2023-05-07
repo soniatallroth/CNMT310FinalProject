@@ -35,7 +35,6 @@ $books = Bookmarks::create()->setID($_SESSION['info']->id)->setURL($_POST['url']
 $returnVal = $books->addBookmark($client, $_SESSION);
 
 if(isset($returnVal)){
-  //$_SESSION['results'][] = $returnValue;
   die(header("Location: " . BOOKMARKS));
 }
 

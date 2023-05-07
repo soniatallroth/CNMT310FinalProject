@@ -34,14 +34,7 @@ $books = Bookmarks::create()->setBookmarkID($_POST['bookmark_id'])->setID($_SESS
 
 $returnVal = $books->deleteBookmark($client, $_SESSION);
 
-//$books = new Bookmarks();
-
-//$id = $_SESSION['info']->id;
-//$bookmarkID = $_POST['bookmark_id'];
-
-//$books->deleteBookmark($id, $bookmarkID, $client);
 if(isset($returnVal)){
-    //$_SESSION['results'][] = $returnValue;
     die(header("Location: " . BOOKMARKS));
 }
 
