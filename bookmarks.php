@@ -32,7 +32,7 @@ print   '       <div class="header-left">';
 print   '           <h1><a class="logo" href="index.php">stash</a></h1>';
 print   '       </div>';
 print   '       <div class="header-right">';
- print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['info']->name .  ".</p>";
+print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['info']->name .  ".</p>";
 print   '           <a class="link login-link" href="logout.php">Log Out</a>';
 print   '       </div>';
 print   '   </header>';
@@ -53,12 +53,12 @@ print   '       <div id="addModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
 print   '                   <label class="text-label" for="url">Add the link for your bookmark:</label>';
-print   '                   <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
+print   '                   <input class="text-input" id="url" name="url" type="url" placeholder="https://www.google.com">';
 print   '                   <label class="text-label" for="displayname">Name your bookmark:</label>';
 print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
 print   '                   <label class="text-label" for="radio-button-container">Do you want your bookmark to appear in the Popular tab?</label><br>';
 print   '                   <div class="radio-button-container">';
-print   '                       <input type="radio" id="public" name="sharingBookmarks" value="public">'; // public radio button
+print   '                       <input type="radio" id="public" name="sharingBookmarks" checked="checked" value="public">'; // public radio button
 print   '                       <label for="public">Yes</label><br>'; 
 print   '                       <input type="radio" id="private" name="sharingBookmarks" value="private">'; // private radio button
 print   '                       <label for="private">No</label>';
@@ -71,18 +71,6 @@ print   '                </form>';
 print   '           </div>'; // end of modal-content
 print   '       </div>'; 
 print   '   </div>'; 
-print   '       <div id="deleteModal" class="modal">';
-print   '           <div class="modal-content">';
-print   '               <form id="delete-bookmark" action="action-deletebookmark.php" method="POST">';
-print   '                   <label class="text-label" for="bookID">Enter the ID of the bookmark you want to delete.</label>';
-print   '                   <input class="text-input" id="bookID" name="bookID" type="text" placeholder="e.g. 15">';
-print   '                   <div class="button-holder">';
-print   '                       <span class="close close-words">Close window</span>';
-print   '                       <input id="submit-btn" type="submit" value="Delete Bookmark">';
-print   '                   </div>';
-print   '               </form>';
-print   '           </div>';
-print   '       </div>';
 print   '       <div class="tabs-wrapper">';
 print   '           <div class="tabs">';
 print   '               <div class="tab">';
@@ -116,14 +104,14 @@ print   '               <input type="radio" name="css-tabs" id="tab-2" class="ta
 print   '               <label for="tab-2" class="tab-label">Popular</label>';
 print   '               <div class="tab-content">';
 print   '                   <div class="search-container">';
-print   '                       <input id="search" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
+print   '                       <input id="popSearch" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
 print   '                       <a class="button" href="#">Search</a>';
 print   '                   </div>';
 print   '                   <div class="list-group bookmark-container"><br>';
 
 $popularBookmarks = $books->getBookmarks($client, 'popular');
 print $popularBookmarks;
-$books->autocomplete('popular');
+//$books->autocomplete('popular');
 
 print   '                   </div>';
 print   '               </div>';
