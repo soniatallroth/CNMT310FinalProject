@@ -56,7 +56,7 @@ print   '                   <label class="text-label" for="url">Add the link for
 print   '                   <input class="text-input" id="url" name="url" type="url" placeholder="https://www.google.com">';
 print   '                   <label class="text-label" for="displayname">Name your bookmark:</label>';
 print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
-print   '                   <p class="text-label">Do you want your bookmark to appear in the Popular tab?</p><br>';
+print   '                   <p class="text-label">Should this bookmark appear in the Popular tab?</p><br>';
 print   '                   <div class="radio-button-container">';
 print   '                       <input type="radio" id="public" name="sharingBookmarks" checked="checked" value="public">'; // public radio button
 print   '                       <label for="public">Yes</label><br>'; 
