@@ -75,8 +75,11 @@ class Bookmarks {
                     $bookmarkID = $bookmark->bookmark_id;
                     $numVisits = $bookmark->visits;
                     $sharedstatus = $bookmark->shared;
+                    //below code adds prefixes based on tab and underscores to each ID so there are no duplicate IDs
+                    $idPrefix = ($tab == 'main') ? 'm' : 'p';
+                    $prefixedID = $idPrefix . '_' . $bookmarkID;
                     if($tab == 'main' || ($tab == 'popular' && $numVisits >= 10 && $sharedstatus !== "private")) {
-                        $output .=  '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
+                        $output .=  '<div id="' . $prefixedID . '" class="display list-group-item list-group-item-action">';
                         $output .=  "   <img class='bookmark-favicon' src='https://s2.googleusercontent.com/s2/favicons?domain=$href' alt='website favicon'>";
                         $output .=  '   <div class="li-container">';
                         $output .=  '       <div class="li-left">';
