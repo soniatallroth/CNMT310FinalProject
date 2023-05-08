@@ -386,6 +386,11 @@ input[type="submit"]:hover {
     font-weight: 400;
 }
 
+.bookmark-favicon {
+    width: 30px;
+    padding-right: 10px;
+}
+
 /* bookmarks x */
 .display {
     height: 100%;

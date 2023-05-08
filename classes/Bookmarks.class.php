@@ -76,6 +76,7 @@ class Bookmarks {
                     $numVisits = $bookmark->visits;
                     if($tab == 'main' || ($tab == 'popular' && $numVisits >= 10)) {
                         $output .=  '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
+                        $output .=  "   <img class='bookmark-favicon' src='https://s2.googleusercontent.com/s2/favicons?domain=$href' alt='website favicon'>";
                         $output .=  '   <div class="li-container">';
                         $output .=  '       <div class="li-left">';
                         $output .=  "           <li><a class='li-title' href='$href' data-bookmark-id=" . $bookmarkID . " target='_blank'>$title</a></li>";

@@ -32,44 +32,34 @@ print   '       <div class="header-left">';
 print   '           <h1><a class="logo" href="index.php">stash</a></h1>';
 print   '       </div>';
 print   '       <div class="header-right">';
-print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['info']->name .  ".</p>";
+ print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['info']->name .  ".</p>";
 print   '           <a class="link login-link" href="logout.php">Log Out</a>';
 print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
 print   '   <main class="bookmarks-main">';
+
 if(isset($_SESSION['results']) && is_array($_SESSION['results']) && count($_SESSION['results']) > 0) {
     foreach($_SESSION['results'] as $field => $message) {
         print '<span class="error" id="errormsg">' . $message . '</span><br>';
     }
     $_SESSION['results'] = array();
 }
+
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
 print   '       <button class="button" id="addBtn">Add a bookmark</button>';
 print   '       <div id="addModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
-<<<<<<< HEAD
-print   '                   <label class="text-label" for="url">Add the link for your bookmark</label>';
-// move error messaging here? might make more sense for the user to see it here
-print   '                   <input class="text-input" id="url" name="url" type="url" placeholder="https://www.google.com">';
-print   '                   <label class="text-label" for="displayname">Name your bookmark</label>';
-print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
-print   '                   <p class="add-bookmark-text">Would you like this bookmark to appear in the shared Popular tab?</p>';
-print   '                   <div class="radio-button-container">';
-print   '                       <input type="radio" id="public" name="sharingBookmarks" value="public">'; // public radio button
-print   '                       <label for="public">Yes</label>'; 
-=======
 print   '                   <label class="text-label" for="url">Add the link for your bookmark:</label>';
 print   '                   <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
 print   '                   <label class="text-label" for="displayname">Name your bookmark:</label>';
 print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
-print   '                   <label class="text-label" for="radio-button-container">Bookmark visibilty (e.g. in Popular Tab):</label>';
+print   '                   <label class="text-label" for="radio-button-container">Do you want your bookmark to appear in the Popular tab?</label><br>';
 print   '                   <div class="radio-button-container">';
 print   '                       <input type="radio" id="public" name="sharingBookmarks" value="public">'; // public radio button
-print   '                       <label for="public">Public</label><br>'; 
->>>>>>> main
+print   '                       <label for="public">Yes</label><br>'; 
 print   '                       <input type="radio" id="private" name="sharingBookmarks" value="private">'; // private radio button
 print   '                       <label for="private">No</label>';
 print   '                   </div>';
@@ -116,7 +106,6 @@ $books = Bookmarks::create()->setID($_SESSION['info']->id);
 $mainBookmarks = $books->getBookmarks($client, 'main');
 
 print $mainBookmarks;
-
 $books->autocomplete('main');
 
 print   '                   </ul>';
