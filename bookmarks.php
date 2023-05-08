@@ -98,9 +98,13 @@ if(!isset($_SESSION['info'])) {
     die(header("Location : " . BOOKMARKS)); 
 }
 
-$id = $_SESSION['info']->id;
+//$id = $_SESSION['info']->id;
 
-$books->getBookmarks($id, $client, 'main');
+$books = Bookmarks::create()->setID($_SESSION['info']->id);
+$mainBookmarks = $books->getBookmarks($client, 'main');
+
+print $mainBookmarks;
+
 $books->autocomplete('main');
 
 print   '                   </ul>';
@@ -116,7 +120,8 @@ print   '                       <a class="button" href="#">Search</a>';
 print   '                   </div>';
 print   '                   <ul class="list-group bookmark-container"><br>';
 
-$books->getBookmarks($id, $client, 'popular');
+$popularBookmarks = $books->getBookmarks($client, 'popular');
+print $popularBookmarks;
 $books->autocomplete('popular');
 
 print   '                   </ul>';
