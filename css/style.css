@@ -339,6 +339,7 @@ input[type="submit"]:hover {
     border: 1px solid #BABABA;
     border-radius: 6px;
     margin-bottom: 8px;
+    list-style-type: none;
 }
 .list-group-item:hover {
     z-index: 1;

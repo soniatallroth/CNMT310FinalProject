@@ -79,7 +79,7 @@ class Bookmarks {
                         $output .=  "   <img class='bookmark-favicon' src='https://s2.googleusercontent.com/s2/favicons?domain=$href' alt='website favicon'>";
                         $output .=  '   <div class="li-container">';
                         $output .=  '       <div class="li-left">';
-                        $output .=  "           <li><a class='li-title' href='$href' data-bookmark-id=" . $bookmarkID . " target='_blank'>$title</a></li>";
+                        $output .=  "           <p><a class='li-title' href='$href' data-bookmark-id=" . $bookmarkID . " target='_blank'>$title</a></p>";
                         $output .=  "           <p class='li-link'>$href</p>";
                         $output .=  '       </div>';
                         $output .=  '       <div class="li-right">'; 

@@ -93,7 +93,7 @@ print   '                       <div class="search-container">';
 print   '                           <input id="search" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
 print   '                           <a class="button" href="#">Search</a>';
 print   '                       </div>';
-print   '                       <ul class="list-group bookmark-container"><br>';
+print   '                       <div class="list-group bookmark-container"><br>';
 
 if(!isset($_SESSION['info'])) {
     $_SESSION['results'][] = "Sorry! No User ID was found :(";
@@ -108,7 +108,7 @@ $mainBookmarks = $books->getBookmarks($client, 'main');
 print $mainBookmarks;
 $books->autocomplete('main');
 
-print   '                   </ul>';
+print   '                   </div>'; // end of fake ul
 print   '               </div>';
 print   '           </div>'; // end of my bookmarks tab
 print   '           <div class="tab">'; 
@@ -119,13 +119,13 @@ print   '                   <div class="search-container">';
 print   '                       <input id="search" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
 print   '                       <a class="button" href="#">Search</a>';
 print   '                   </div>';
-print   '                   <ul class="list-group bookmark-container"><br>';
+print   '                   <div class="list-group bookmark-container"><br>';
 
 $popularBookmarks = $books->getBookmarks($client, 'popular');
 print $popularBookmarks;
 $books->autocomplete('popular');
 
-print   '                   </ul>';
+print   '                   </div>';
 print   '               </div>';
 print   '           </div>'; // end of popular tab
 print   '       </div>'; // end of tabs
