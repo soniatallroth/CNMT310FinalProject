@@ -61,7 +61,7 @@ class Bookmarks {
         
         if ($obj->result == "Success") {
             if (!is_array($this->urlList) || count($this->urlList) <= 0) {
-                $output = print '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
+                $output = '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
             } else {
                 $output = '';
                 foreach ($this->urlList as $bookmark) {
