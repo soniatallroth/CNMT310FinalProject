@@ -53,7 +53,7 @@ print   '       <div id="addModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
 print   '                   <label class="text-label" for="url">Add the link for your bookmark:</label>';
-print   '                   <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
+print   '                   <input class="text-input" id="url" name="url" type="url" placeholder="https://www.google.com">';
 print   '                   <label class="text-label" for="displayname">Name your bookmark:</label>';
 print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
 print   '                   <label class="text-label" for="radio-button-container">Do you want your bookmark to appear in the Popular tab?</label><br>';
