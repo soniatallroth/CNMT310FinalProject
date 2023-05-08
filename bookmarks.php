@@ -50,6 +50,7 @@ print   '       <button class="button" id="addBtn">Add a bookmark</button>';
 print   '       <div id="addModal" class="modal">';
 print   '           <div class="modal-content">';
 print   '               <form id="add-bookmark" action="action-addbookmark.php" method="POST">';
+<<<<<<< HEAD
 print   '                   <label class="text-label" for="url">Add the link for your bookmark</label>';
 // move error messaging here? might make more sense for the user to see it here
 print   '                   <input class="text-input" id="url" name="url" type="url" placeholder="https://www.google.com">';
@@ -59,6 +60,16 @@ print   '                   <p class="add-bookmark-text">Would you like this boo
 print   '                   <div class="radio-button-container">';
 print   '                       <input type="radio" id="public" name="sharingBookmarks" value="public">'; // public radio button
 print   '                       <label for="public">Yes</label>'; 
+=======
+print   '                   <label class="text-label" for="url">Add the link for your bookmark:</label>';
+print   '                   <input class="text-input" id="url" name="url" type="text" placeholder="https://www.google.com">';
+print   '                   <label class="text-label" for="displayname">Name your bookmark:</label>';
+print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
+print   '                   <label class="text-label" for="radio-button-container">Bookmark visibilty (e.g. in Popular Tab):</label>';
+print   '                   <div class="radio-button-container">';
+print   '                       <input type="radio" id="public" name="sharingBookmarks" value="public">'; // public radio button
+print   '                       <label for="public">Public</label><br>'; 
+>>>>>>> main
 print   '                       <input type="radio" id="private" name="sharingBookmarks" value="private">'; // private radio button
 print   '                       <label for="private">No</label>';
 print   '                   </div>';
