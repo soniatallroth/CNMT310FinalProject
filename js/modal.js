@@ -11,7 +11,7 @@ var addModalClose = document.getElementById("addModal").getElementsByClassName("
 // When the user clicks on the button, open the modal
 addBtn.onclick = function() {
   setTimeout(function() {
-    modal.style.opacity = "1";
+    addModal.style.opacity = "1";
   }, 50);
   addModal.style.display = "block";
 }

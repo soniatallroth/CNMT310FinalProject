@@ -74,7 +74,8 @@ class Bookmarks {
                     $title = $bookmark->displayname;
                     $bookmarkID = $bookmark->bookmark_id;
                     $numVisits = $bookmark->visits;
-                    if($tab == 'main' || ($tab == 'popular' && $numVisits >= 10)) {
+                    $sharedstatus = $bookmark->shared;
+                    if($tab == 'main' || ($tab == 'popular' && $numVisits >= 10 && $sharedstatus !== "private")) {
                         $output .=  '<div id="' . $bookmarkID . '" class="display list-group-item list-group-item-action">';
                         $output .=  "   <img class='bookmark-favicon' src='https://s2.googleusercontent.com/s2/favicons?domain=$href' alt='website favicon'>";
                         $output .=  '   <div class="li-container">';
@@ -205,6 +206,11 @@ class Bookmarks {
 			print '$(".list-group-item-action").filter(function() { $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);';
 			print '});';
 			print '});';
+            print '$("#popSearch").on("keyup", function() {';
+            print 'var value = $(this).val().toLowerCase();';
+            print '$(".list-group-item-action").filter(function() { $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);';
+            print '});';
+            print '});';
 			print '});';
 			print '</script>';
 	}

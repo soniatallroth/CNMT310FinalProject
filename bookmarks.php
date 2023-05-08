@@ -58,7 +58,7 @@ print   '                   <label class="text-label" for="displayname">Name you
 print   '                   <input class="text-input" id="displayname" name="displayname" type="text" placeholder="e.g. Chili recipe">';
 print   '                   <label class="text-label" for="radio-button-container">Do you want your bookmark to appear in the Popular tab?</label><br>';
 print   '                   <div class="radio-button-container">';
-print   '                       <input type="radio" id="public" name="sharingBookmarks" value="public">'; // public radio button
+print   '                       <input type="radio" id="public" name="sharingBookmarks" checked="checked" value="public">'; // public radio button
 print   '                       <label for="public">Yes</label><br>'; 
 print   '                       <input type="radio" id="private" name="sharingBookmarks" value="private">'; // private radio button
 print   '                       <label for="private">No</label>';
@@ -116,14 +116,14 @@ print   '               <input type="radio" name="css-tabs" id="tab-2" class="ta
 print   '               <label for="tab-2" class="tab-label">Popular</label>';
 print   '               <div class="tab-content">';
 print   '                   <div class="search-container">';
-print   '                       <input id="search" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
+print   '                       <input id="popSearch" type="text" class="site-search" name="site-search" placeholder="Search for a bookmark here">';
 print   '                       <a class="button" href="#">Search</a>';
 print   '                   </div>';
 print   '                   <ul class="list-group bookmark-container"><br>';
 
 $popularBookmarks = $books->getBookmarks($client, 'popular');
 print $popularBookmarks;
-$books->autocomplete('popular');
+//$books->autocomplete('popular');
 
 print   '                   </ul>';
 print   '               </div>';
