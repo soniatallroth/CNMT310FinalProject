@@ -140,7 +140,7 @@ header {
 }
 .main-right ul {
     z-index: 50;
-    position: absolute;
+    list-style: inherit;
     list-style-position: outside;
 }
 .main-right li {
