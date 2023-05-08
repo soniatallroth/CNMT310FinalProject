@@ -3,11 +3,11 @@
 require_once("autoload.php");
 require_once("classes/Page.class.php");
 
-$page = new Page("Home Page");
+$page = new Page("stash - Home");
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
-
+$page->addHeadElement('<link rel="icon" type="image/x-icon" href="images/favicon.ico">');
 
 print $page->getTopSection();
 print   '   <!-- Navigation -->';
@@ -28,7 +28,6 @@ else {
 print   '       </div>';
 print   '   </header>';
 print   '<!--Content-->';
-// print   '<main>';
 print   '<div class="main-container">';
 print   '   <div class="main-left">';
 print   '       <p class="heading"><span>stash</span> your bookmarks with us.</p>';
@@ -49,11 +48,9 @@ print   '           <li>View <span>popular bookmarks</span> from users across th
 print   '       </ul>';
 print   '   </div>';
 print   '   <!--Footer-->';
-
 print   '</div>';
-// print   '</main>';
 print   '   <div class="footer">'; 
-print   '       <p>Copyright © 2023</p>';
+print   '       <p>Copyright © 2023 stash</p>';
 print   '   </div>'; 
 
 print $page->getBottomSection();

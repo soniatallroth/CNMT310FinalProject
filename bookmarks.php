@@ -9,19 +9,21 @@ require_once(__DIR__ . "/../yoyoconfig.php");
 $url = "https://cnmt310.classconvo.com/bookmarks/";
 $client = new WebServiceClient($url);
 
-$page = new Page("Bookmarks");
+$page = new Page("stash - Bookmarks");
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) { 
-    $_SESSION['errors'][] = "Please input a username and password to access the bookmarks page.";
+    $_SESSION['results'][] = "Please input a username and password to access the bookmarks page.";
     die(header("Location:" . LOGINFORM)); 
 }
 $books = new Bookmarks();
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
+$page->addHeadElement('<link rel="icon" type="image/x-icon" href="images/favicon.ico">');
 $page->addHeadElement('<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>');
 $page->addHeadElement('<script src="https://kit.fontawesome.com/c288a0b638.js" crossorigin="anonymous"></script>');
 $page->addHeadElement('<script src="js/ajaxAddVisit.js"></script>');
+$page->addHeadElement('<script src="js/ajaxDeleteBookmark.js"></script>');
 
 print $page->getTopSection();
 print   '   <!-- Navigation (for bookmarks page)-->';
@@ -30,18 +32,18 @@ print   '       <div class="header-left">';
 print   '           <h1><a class="logo" href="index.php">stash</a></h1>';
 print   '       </div>';
 print   '       <div class="header-right">';
-print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['user'] .  ".</p>";
+print   "       <p class='hellostatement'>Welcome back, " . $_SESSION['info']->name .  ".</p>";
 print   '           <a class="link login-link" href="logout.php">Log Out</a>';
 print   '       </div>';
 print   '   </header>';
 print   '   <!--Content-->';
 print   '   <main class="bookmarks-main">';
-if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
-    foreach($_SESSION['errors'] as $field => $message) {
+if(isset($_SESSION['results']) && is_array($_SESSION['results']) && count($_SESSION['results']) > 0) {
+    foreach($_SESSION['results'] as $field => $message) {
         print '<span class="error" id="errormsg">' . $message . '</span><br>';
     }
-    $_SESSION['errors'] = array();
-} 
+    $_SESSION['results'] = array();
+}
 print   '   <div class="bookmark-heading">';
 print   '       <h2>Bookmarks</h2>';
 print   '       <button class="button" id="addBtn">Add a bookmark</button>';
@@ -92,15 +94,19 @@ print   '                           <a class="button" href="#">Search</a>';
 print   '                       </div>';
 print   '                       <ul class="list-group bookmark-container"><br>';
 
-if(!isset($_SESSION['userid'])) {
-    $_SESSION['errors'][] = "Sorry! No User ID was found :(";
+if(!isset($_SESSION['info'])) {
+    $_SESSION['results'][] = "Sorry! No User ID was found :(";
     die(header("Location : " . BOOKMARKS)); 
 }
 
-$id = $_SESSION['userid'];
+//$id = $_SESSION['info']->id;
 
-$books->getBookmarks($id, $client);
-$books->autocomplete();
+$books = Bookmarks::create()->setID($_SESSION['info']->id);
+$mainBookmarks = $books->getBookmarks($client, 'main');
+
+print $mainBookmarks;
+
+$books->autocomplete('main');
 
 print   '                   </ul>';
 print   '               </div>';
@@ -115,7 +121,9 @@ print   '                       <a class="button" href="#">Search</a>';
 print   '                   </div>';
 print   '                   <ul class="list-group bookmark-container"><br>';
 
-// POPULAR BOOKMARK TAB STUFF GOES HERE!
+$popularBookmarks = $books->getBookmarks($client, 'popular');
+print $popularBookmarks;
+$books->autocomplete('popular');
 
 print   '                   </ul>';
 print   '               </div>';
@@ -123,11 +131,10 @@ print   '           </div>'; // end of popular tab
 print   '       </div>'; // end of tabs
 print   '   </div>'; // end of tabs-wrapper
 
-
-
 print   '   </main>';
 
 print $page->addBottomElement("<script src='js/modal.js'></script>");
 
 print $page->getBottomSection();
+
 ?>

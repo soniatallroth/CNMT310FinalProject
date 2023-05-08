@@ -3,7 +3,7 @@
 require_once("autoload.php");
 require_once("classes/Page.class.php");
 
-$page = new Page("Login Portal");
+$page = new Page("stash - Login Portal");
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) { 
     die(header("Location:" . BOOKMARKS)); 
@@ -11,6 +11,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
 
 $page->addHeadElement('<link rel="stylesheet" href="css/reset.css">');
 $page->addHeadElement('<link rel="stylesheet" href="css/style.css">');
+$page->addHeadElement('<link rel="icon" type="image/x-icon" href="images/favicon.ico">');
     
 print $page->getTopSection();
 
@@ -24,23 +25,23 @@ print   '<div class="login-container">';
 print   '   <div class="login">';
 print   '             <div class="welcome-text">';
 print   '                 <h2>Welcome!</h2>';
-print   '                 <p>Please enter your details.</p>';
+print   '                 <p>Please enter your credentials.</p>';
 print   '            </div>';
 print   '            <form id="form_login" action="action-login.php" method="POST">';
 print '<span id="errorMsg" class="error">';
 
-if(isset($_SESSION['errors']) && is_array($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
-    foreach($_SESSION['errors'] as $field => $message) {
+if(isset($_SESSION['results']) && is_array($_SESSION['results']) && count($_SESSION['results']) > 0) {
+    foreach($_SESSION['results'] as $field => $message) {
         print $message;
     }
-    $_SESSION['errors'] = array();
+    $_SESSION['results'] = array();
 }
 
 print '</span>';
 print   '                   <div id="form_login_feedback">';
-print   '                        <label class="text-label" for="username">Your username</label><br>';
+print   '                        <label class="text-label" for="username">Your username:</label><br>';
 print   '                        <input class="text-input" id="username" name="username" type="text" placeholder="eg. johnsmith">';
-print   '                        <label class="text-label" for="password">Your password</label><br>';
+print   '                        <label class="text-label" for="password">Your password:</label><br>';
 print   '                        <input class="text-input" id="password" name="password" type="password" placeholder="********">';
 print   '                        <div class="button-holder">';
 print   '                            <input id="submit-btn" type="submit" value="Log In">';
