@@ -47,7 +47,10 @@ print   '                        <div class="button-holder">';
 print   '                            <input id="submit-btn" type="submit" value="Log In">';
 print   '                        </div>';
 print   '                    </div>';
-print   '                </form>';
+print   '                        </form>';
+print   '                 </div>';
+print   '              </div>';
+print   '</main>';
 
 print $page->addBottomElement('<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>');
 print $page->addBottomElement("<script src='js/validator.js'></script>");

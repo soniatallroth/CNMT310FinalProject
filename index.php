@@ -42,10 +42,8 @@ else {
 
 print   '   </div>';
 print   '   <div class="main-right">';
-print   '       <ul></ul>';
 print   '           <li><span>Add</span>, <span>delete</span>, and <span>access</span> your bookmarks all from the same place</li>';
 print   '           <li>View <span>popular bookmarks</span> from users across the site</li>';
-print   '       </ul>';
 print   '   </div>';
 print   '   <!--Footer-->';
 print   '</div>';
