@@ -14,9 +14,6 @@ if(!isset($_SESSION['loggedIn']) || !isset($_SESSION['info'])) {
   die(header("Location:" . LOGINFORM));
 }
 
-// Default is to POST. If you need to change to a GET, here's how:
-//$client->setMethod("GET");
-
 // checks to make sure both form fields were set, displays error message if not 
 foreach($required as $element) {
   if(!isset($_POST[$element]) || empty($_POST[$element])){

@@ -42,17 +42,11 @@ $fields = array("apikey" => APIKEY,
              );
 $client->setPostFields($fields);
 
-//For Debugging:
-//var_dump($client);
-
 $returnValue = $client->send();
 $obj = json_decode($returnValue);
 if(!property_exists($obj, "result")) {
     die(print("Error, no result property"));
 }
-
-//dumps JSON server response containing data + result
-//var_dump($returnValue);
 
 //all checks above are passed, so below code *should* be safe to run
 

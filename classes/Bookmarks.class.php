@@ -101,11 +101,6 @@ class Bookmarks {
     public function addBookmark($client, $sessManager) {
         require_once(__DIR__ . "/../../yoyoconfig.php");
 
-        //$link = strtolower($_POST['url']);
-        //$linkLabel = $_POST['displayname'];
-        //$shared = $_POST['sharingBookmarks']; //this defaults to true (public), even if not selected
-        //$id = $_SESSION['info']->id;
-
         $data = array("url" => $this->_url, "displayname" => $this->_displayName, "user_id" => $this->_id, "shared" => $this->_sharedStatus);
         $action = "addbookmark";
         $fields = array("apikey" => APIKEY,
@@ -115,20 +110,11 @@ class Bookmarks {
                     );
         $client->setPostFields($fields);
 
-        //For Debugging:
-        //var_dump($client);
-
         $returnValue = $client->send();
         $obj = json_decode($returnValue);
         if(!property_exists($obj, "result")) {
             die(print("Error, no result property"));
         }
-
-        //dumps JSON server response containing data + result
-        //var_dump($returnValue);
-
-        //print $obj->result;
-        //all checks above are passed, so below code *should* be safe to run
 
         if($obj->result !== "Success") {
             $sessManager['results'][] = "Sorry! There was an error adding your bookmark.";
@@ -148,19 +134,11 @@ class Bookmarks {
                     );
         $client->setPostFields($fields);
 
-        //For Debugging:
-        //var_dump($client);
-
         $returnValue = $client->send();
         $obj = json_decode($returnValue);
         if(!property_exists($obj, "result")) {
             die(print("Error, no result property"));
         }
-        //dumps JSON server response containing data + result
-        //var_dump($returnValue);
-
-        //print $obj->result;
-        //all checks above are passed, so below code *should* be safe to run
 
         if($obj->result !== "Success") {
             $sessManager['results'][] = "Sorry! There was an error adding your bookmark.";
@@ -179,26 +157,6 @@ class Bookmarks {
 			print "<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css\">";
 			print "<script src=\"https://code.jquery.com/jquery-3.6.0.js\"></script>";
 			print "<script src=\"https://code.jquery.com/ui/1.13.2/jquery-ui.js\"></script>";
-/*			print "<script type=\"text/javascript\">";
-
-			print "  $( function() {\n";
-
-			print "\t\tvar bookmarks = " . json_encode($ac) . ";\n";
-
-			print "\t\t$(\"#search\").autocomplete({\n";
-
-			print "\t\t\tminLength: 0,\n";
-			print "\t\t\tsource: bookmarks,\n";
-			// print 'position: { my : "center", at: "center" }';
-			print 'appendTo: "#search"';
-
-			print "\t\t\tselect: function( event, ui ) {\n";
-			print "\t\t\t\twindow.location.href = ui.item.value;\n";
-			print "\t\t\t}\n";
-			print "\t\t});\n";
-			print "\t} );\n";
-			print "</script>";
-*/
 			print '<script>';
 			print '$( function() {';
 			print 'var srcdata = ' . json_encode($ac) . ";\n";

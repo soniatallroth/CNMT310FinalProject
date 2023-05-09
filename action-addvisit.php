@@ -1,4 +1,5 @@
 <?php
+
 require_once("WebServiceClient.php");
 require_once("autoload.php");
 require_once("classes/Bookmarks.class.php");
@@ -12,6 +13,11 @@ if(!isset($_SESSION['loggedIn']) || !isset($_SESSION['info'])) {
     die(header("Location:" . LOGINFORM));
 }
 
+if(empty($_SERVER['HTTP_REFERER'])) {
+    $_SESSION['results'][] = "Click on a bookmark to add a visit.";
+    die(header("Location:" . BOOKMARKS));
+}
+
 if(count($_SESSION['results']) > 0){
     $_SESSION['results'][] = "Sorry! There was an error adding a visit.";
     die(header("Location:" . BOOKMARKS));
@@ -20,8 +26,6 @@ if(count($_SESSION['results']) > 0){
 $books = Bookmarks::create()->setBookmarkID($_POST['bookmark_id'])->setID($_SESSION['info']->id);
 
 $returnVal = $books->addVisit($client, $_SESSION);
-
-//var_dump($returnValue);
 
 if(isset($returnVal)){
     die(header("Location: " . BOOKMARKS));

@@ -88,13 +88,11 @@ if(!isset($_SESSION['info'])) {
     die(header("Location : " . BOOKMARKS)); 
 }
 
-//$id = $_SESSION['info']->id;
-
 $books = Bookmarks::create()->setID($_SESSION['info']->id);
 $mainBookmarks = $books->getBookmarks($client, 'main');
 
 print $mainBookmarks;
-$books->autocomplete('main');
+$books->autocomplete();
 
 print   '                   </div>'; // end of fake ul
 print   '               </div>';
@@ -111,18 +109,15 @@ print   '                   <div class="list-group bookmark-container"><br>';
 
 $popularBookmarks = $books->getBookmarks($client, 'popular');
 print $popularBookmarks;
-//$books->autocomplete('popular');
 
 print   '                   </div>';
 print   '               </div>';
 print   '           </div>'; // end of popular tab
 print   '       </div>'; // end of tabs
 print   '   </div>'; // end of tabs-wrapper
-
 print   '   </main>';
 
 print $page->addBottomElement("<script src='js/modal.js'></script>");
-
 print $page->getBottomSection();
 
 ?>
