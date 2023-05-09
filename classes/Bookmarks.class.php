@@ -139,9 +139,35 @@ class Bookmarks {
         if(!property_exists($obj, "result")) {
             die(print("Error, no result property"));
         }
-
+        
         if($obj->result !== "Success") {
             $sessManager['results'][] = "Sorry! There was an error adding your bookmark.";
+        }
+        
+        return $sessManager['results'];
+    }
+    function addVisit($client, $sessManager)
+    {
+        require_once(__DIR__ . "/../../yoyoconfig.php");
+
+        $data = array("bookmark_id" => $this->_bookmarkID, "user_id" => $this->_id);
+        $action = "addvisit";
+        $fields = array(
+            "apikey" => APIKEY,
+            "apihash" => APIHASH,
+            "data" => $data,
+            "action" => $action
+        );
+        $client->setPostFields($fields);
+
+        $returnValue = $client->send();
+        $obj = json_decode($returnValue);
+        if(!property_exists($obj, "result")) {
+            die(print("Error, no result property"));
+        }
+
+        if ($obj->result !== 'Success') {
+            $sessManager['results'][] = "Sorry! There was an error adding a visit to this bookmark.";
         }
 
         return $sessManager['results'];
@@ -174,32 +200,6 @@ class Bookmarks {
 			print '</script>';
 	}
 
-    function addVisit($client, $sessManager)
-    {
-        require_once(__DIR__ . "/../../yoyoconfig.php");
-
-        $data = array("bookmark_id" => $this->_bookmarkID, "user_id" => $this->_id);
-        $action = "addvisit";
-        $fields = array(
-            "apikey" => APIKEY,
-            "apihash" => APIHASH,
-            "data" => $data,
-            "action" => $action
-        );
-        $client->setPostFields($fields);
-
-        $returnValue = $client->send();
-        $obj = json_decode($returnValue);
-        if(!property_exists($obj, "result")) {
-            die(print("Error, no result property"));
-        }
-
-        if ($obj->result !== 'Success') {
-            $sessManager['results'][] = "Sorry! There was an error adding a visit to this bookmark.";
-        }
-
-        return $_SESSION['results'];
-    }
 }
 
 ?>
