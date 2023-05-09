@@ -5,8 +5,8 @@ $(document).ready(function() {
                     url: 'action-addvisit.php',
                     type: 'POST',
                     data: {bookmark_id: bookmarkID},
-                    success: function() {
-                        location.reload();
+                    success: function(response) {
+                        $("body").html(response);
                     },
                     error: function(error){
                         alert(error);

@@ -10,9 +10,8 @@ $(document).ready(function() {
                 bookmark_id: bookmarkId,
                 user_id: user
             },
-            success: function(result) {
-                // Reload page to update list of bookmarks
-                location.reload();
+            success: function(response) {
+                $("body").html(response);
             },
             error: function() {
                 alert("Error deleting bookmark!");
