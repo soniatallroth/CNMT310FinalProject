@@ -169,14 +169,12 @@ class Bookmarks {
         return $sessManager['results'];
     }
     
-	public function autocomplete($tab) {
+	public function autocomplete() {
         $ac = array();
         foreach ($this->urlList as $key => $val) {
-            if($tab == 'main' || ($tab == 'popular' && $val->visits >= 10)) {
                 $ac[$key]['id'] = $val->bookmark_id;
                 $ac[$key]['label'] = $val->displayname;
                 $ac[$key]['value'] = $val->url;
-            }
         }
 			print "<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css\">";
 			print "<script src=\"https://code.jquery.com/jquery-3.6.0.js\"></script>";
