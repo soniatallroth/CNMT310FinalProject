@@ -63,11 +63,9 @@ class Bookmarks {
             if (!is_array($this->urlList) || count($this->urlList) <= 0) {
                 $output = '<h3>Sorry! No bookmarks were found to be displayed here :(</h3>';
             } else {
-                if($tab == 'popular') {
-                    usort($this->urlList, function($a, $b) {
-                        return $b->visits <=> $a->visits;
-                    });
-                }
+                usort($this->urlList, function($a, $b) {
+                    return $b->visits <=> $a->visits;
+                });
                 $output = '';
                 foreach ($this->urlList as $bookmark) {
                     $href = $bookmark->url;
