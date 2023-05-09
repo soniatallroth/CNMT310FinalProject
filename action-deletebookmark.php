@@ -7,12 +7,13 @@ require_once(__DIR__ . "/../yoyoconfig.php");
 $url = "https://cnmt310.classconvo.com/bookmarks/";
 $client = new WebServiceClient($url);
 
-if(!isset($_SESSION['loggedIn']) || !isset($_POST['bookmark_id'])){
-    $_SESSION['results'][] = "Please click on the X next to a bookmark to delete it.";
-    die(header("location: " . BOOKMARKS));
+if(!isset($_SESSION['loggedIn']) || !isset($_SESSION['info'])){
+    $_SESSION['results'][] = "You must be logged in to perform this action.";
+    die(header("location: " . LOGINFORM));
 }
 
-if(!isset($_SESSION['info'])) {
+if(!isset($_POST['bookmark_id'])) {
+    $_SESSION['results'][] = "Please click on the X next to a bookmark to delete it.";
     die(header("Location:" . BOOKMARKS));
 }
 
