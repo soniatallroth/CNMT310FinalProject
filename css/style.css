@@ -24,8 +24,6 @@ body {
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     height: 100%;
 }
-main {
-}
 .bookmarks-main {
     padding: 50px;
 }
@@ -366,8 +364,6 @@ input[type="submit"]:hover {
     justify-content: space-between;
     width: 100%;
 }
-.li-left {
-}
 .li-right {
     text-align: right;
 }
@@ -511,8 +507,6 @@ input[type="submit"]:hover {
 /* radio button styling */
 input[type="radio"]{
     -webkit-appearance: radio;
-}
-.radio-button-container {
 }
 label[for="public"] {
     margin-right: 20px;
