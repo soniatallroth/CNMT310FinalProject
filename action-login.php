@@ -6,12 +6,14 @@ require_once(__DIR__ . "/../yoyoconfig.php");
 $url = "https://cnmt310.classconvo.com/bookmarks/";
 $client = new WebServiceClient($url);
 
-// Default is to POST. If you need to change to a GET, here's how:
-//$client->setMethod("GET");
+if ($_SESSION['loggedIn'] === true) { 
+  die(header("Location:" . BOOKMARKS)); 
+}
 
 $_SESSION['loggedIn'] = false; 
 $_SESSION['results'] = array();
 $_SESSION['info'] = array();
+
 
 $required = array('username', 'password');
 
